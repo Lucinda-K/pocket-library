@@ -30,6 +30,13 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     //MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let googlebooks = GoogleBooksService(API_KEY: "")
+        
+        googlebooks.queryByISBN(isbn: "") {(books) in
+        
+        
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
