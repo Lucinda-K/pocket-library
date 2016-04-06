@@ -127,6 +127,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                         self.books = books
                         for book in books {
                             let book = book
+                            print("hello")
                             print(book)
                         }
                     print("Queried")

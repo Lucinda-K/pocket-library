@@ -47,13 +47,15 @@ class GoogleBooksService {
                         jsonResult = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
                         arrayOfTitles = jsonResult.valueForKeyPath("items.volumeInfo.title") as? [String] {
                             let titles = arrayOfTitles.joinWithSeparator(", ")
-                            print(titles)
+                            print("Titles: \(titles)")
+                            print("Retrieved data")
                     } else {
                         // error
                         print("error: data")
                     }
                 }
             }).resume()
+            print("Continue")
         }
 
 
