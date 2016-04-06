@@ -28,8 +28,13 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureLayer:AVCaptureVideoPreviewLayer?
     
     var books: [JSON] = []
+    let api_key = valueForAPIKey(keyname: "API_KEY")
+
     
-    let googlebooks = GoogleBooksService(API_KEY: "")
+    var googlebooks: GoogleBooksService?
+
+    var dataValue = ""
+    var dataType = ""
 
     //MARK: View lifecycle
     override func viewDidLoad() {
@@ -40,7 +45,19 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.googlebooks = GoogleBooksService(API_KEY: api_key)
         self.setupCaptureSession()
+        /*
+        googlebooks.queryByISBN(self.dataValue) {
+            (books) in
+            self.books = books
+            for book in books {
+                let book = book
+                print(book)
+            }
+            print("Queried")
+        }
+    */
     }
     
     private func setupCaptureSession(){
@@ -98,20 +115,26 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     //MARK: Delegate Methods
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!)
     {
-        for metadata in metadataObjects{
-            let decodedData:AVMetadataMachineReadableCodeObject = metadata as! AVMetadataMachineReadableCodeObject
-            self.dataLabel.text = decodedData.stringValue
-            self.googlebooks.queryByISBN(decodedData.stringValue) {
-                (books) in
-                    self.books = books
-                    for book in books {
-                        let book = book
-                        print(book)
-                    }
-                print("Queried")
+        if (self.dataValue == "") {
+            for metadata in metadataObjects{
+                let decodedData:AVMetadataMachineReadableCodeObject = metadata as! AVMetadataMachineReadableCodeObject
+                self.dataLabel.text = decodedData.stringValue
+                self.dataValue = decodedData.stringValue
+                self.dataType = decodedData.type
+                
+                self.googlebooks!.queryByISBN(decodedData.stringValue) {
+                    (books) in
+                        self.books = books
+                        for book in books {
+                            let book = book
+                            print(book)
+                        }
+                    print("Queried")
+                }
+                
+                self.dataTypeLabel.text = decodedData.type
+                print(self.dataValue)
             }
-            
-            self.dataTypeLabel.text = decodedData.type
         }
     }
     
