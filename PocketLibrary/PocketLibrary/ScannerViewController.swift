@@ -27,16 +27,15 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     /// The UI layer to display the feed from the input source, in our case, the camera.
     var captureLayer:AVCaptureVideoPreviewLayer?
     
+    var books: [JSON] = []
+    
+    let googlebooks = GoogleBooksService(API_KEY: "")
+
     //MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
-        let googlebooks = GoogleBooksService(API_KEY: "")
-        
-        googlebooks.queryByISBN(isbn: "") {(books) in
-        
-        
-        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -102,6 +101,16 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         for metadata in metadataObjects{
             let decodedData:AVMetadataMachineReadableCodeObject = metadata as! AVMetadataMachineReadableCodeObject
             self.dataLabel.text = decodedData.stringValue
+            self.googlebooks.queryByISBN(decodedData.stringValue) {
+                (books) in
+                    self.books = books
+                    for book in books {
+                        let book = book
+                        print(book)
+                    }
+                print("Queried")
+            }
+            
             self.dataTypeLabel.text = decodedData.type
         }
     }

@@ -27,43 +27,35 @@ class GoogleBooksService {
         
     }
     
+    
+    
     func queryByISBN(isbn: String, callback: ([JSON]) -> Void) {
         // Modeled off of assignment 4 API request
-        
+        print("Querying...")
         // Create query url
         let url_str = "https://www.googleapis.com/books/v1/volumes?q=isbn:\(isbn)&key=\(self.API_KEY)"
         
         
         print(url_str)
         
-        let url = NSURL(string: url_str)
-        let request = NSMutableURLRequest(URL: url!)
-        let session = NSURLSession.sharedSession()
-        
-        
-        let task = session.dataTaskWithRequest(request) {
-            (data, responseText, error) -> Void in if error != nil {
-                print(error)
-            } else {
-                
-                let result = String(data: data!, encoding: NSASCIIStringEncoding)!
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    
-                    
-                    self.resultJSON = result
-                    //                    let json = JSON(data: data!)
-                    
-                    self.parseJSONResponse(data!)
-                    //                    for (_, console) in json["results"] {
-                    //                        self.platforms.append(console)
-                    //                    }
-                    callback(self.books)
-                })
-            }
+        if let url = NSURL(string: url_str) {
+            NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: {data, _, error -> Void in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    if let data = data,
+                        jsonResult = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
+                        arrayOfTitles = jsonResult.valueForKeyPath("items.volumeInfo.title") as? [String] {
+                            let titles = arrayOfTitles.joinWithSeparator(", ")
+                            print(titles)
+                    } else {
+                        // error
+                        print("error: data")
+                    }
+                }
+            }).resume()
         }
-        
-        task.resume()
+
 
         
     }
