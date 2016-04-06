@@ -76,21 +76,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xmM-TP-dmA">
-                                <rect key="frame" x="34" y="28" width="533" height="463"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mAn-m8-GQE">
+                                <rect key="frame" x="66" y="52" width="468" height="361"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Enr-Le-Xna" firstAttribute="top" secondItem="xmM-TP-dmA" secondAttribute="bottom" constant="60" id="hnc-Lu-Bna"/>
-                            <constraint firstItem="xmM-TP-dmA" firstAttribute="centerX" secondItem="X5d-oh-1ge" secondAttribute="centerX" id="jbq-Mi-6qJ"/>
-                            <constraint firstItem="xmM-TP-dmA" firstAttribute="leading" secondItem="X5d-oh-1ge" secondAttribute="leadingMargin" constant="14" id="m6A-zi-6gw"/>
-                            <constraint firstItem="xmM-TP-dmA" firstAttribute="top" secondItem="kX2-Tt-rBD" secondAttribute="bottom" constant="8" symbolic="YES" id="njQ-aC-gFU"/>
+                            <constraint firstItem="mAn-m8-GQE" firstAttribute="leading" secondItem="X5d-oh-1ge" secondAttribute="leadingMargin" constant="46" id="NUm-gX-WTb"/>
+                            <constraint firstItem="mAn-m8-GQE" firstAttribute="top" secondItem="kX2-Tt-rBD" secondAttribute="bottom" constant="32" id="Qrk-vT-Zs0"/>
+                            <constraint firstItem="Enr-Le-Xna" firstAttribute="top" secondItem="mAn-m8-GQE" secondAttribute="bottom" constant="138" id="h5e-6S-P4V"/>
+                            <constraint firstItem="mAn-m8-GQE" firstAttribute="centerX" secondItem="X5d-oh-1ge" secondAttribute="centerX" id="xnG-dv-rT0"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="USX-w6-0GP"/>
                     <connections>
-                        <outlet property="mapView" destination="xmM-TP-dmA" id="N8z-71-G4S"/>
+                        <outlet property="mapView" destination="mAn-m8-GQE" id="pyx-zx-IKt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xrN-kq-5VW" userLabel="First Responder" sceneMemberID="firstResponder"/>

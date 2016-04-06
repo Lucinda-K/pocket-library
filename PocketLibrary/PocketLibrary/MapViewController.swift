@@ -12,19 +12,49 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
+    // https://www.raywenderlich.com/90971/introduction-mapkit-swift-tutorial
+    
+
     
     @IBOutlet weak var mapView: MKMapView!
     
+    let regionRadius: CLLocationDistance = 1000
+    var locationManager = CLLocationManager()
     
     
+    
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+            regionRadius * 2.0, regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    // MARK: - location manager to authorize user location for Maps app
+
+    
+    
+    func checkLocationAuthorizationStatus() {
+        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+            mapView.showsUserLocation = true
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkLocationAuthorizationStatus()
         
-        mapView.mapType = .Standard
+       // mapView.mapType = .Standard
         
-        
-        
+        let initialLocation = CLLocation(latitude: 41.700191, longitude: -86.23793)
+        centerMapOnLocation(initialLocation)
     }
 
 }
