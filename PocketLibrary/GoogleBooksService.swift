@@ -12,18 +12,32 @@ class GoogleBooksService {
     
     var API_KEY : String
     var books : [JSON] = []
+    var titleArray : [String] = []
     
     var resultJSON : String = ""
     
     func parseJSONResponse( data: NSData) -> Void {
-        var title: JSON = ""
-        var authors: [JSON] = []
+        
+        //print("Printing data")
+        //print(data)
+        
+        //var authors : [JSON] = []
+        
         let json = JSON(data: data)
         
-        title = json["items"]["volumeInfo"]["title"]
-        for (_, author) in json["items"]["volumeInfo"]["authors"] {
-            authors.append(author)
+        for(_, book) in json["items"] {
+            print("Adding a book")
+            books.append(book)
         }
+        /*
+        let title = json["items"]["volumeInfo"]["title"]
+        print("Printing title")
+        print(title)
+        for (_, author) in json["items"]["volumeInfo"]["authors"] {
+            print("Printing author")
+            print(author)
+            authors.append(author)
+        }*/
         
     }
     
@@ -35,9 +49,35 @@ class GoogleBooksService {
         // Create query url
         let url_str = "https://www.googleapis.com/books/v1/volumes?q=isbn:\(isbn)&key=\(self.API_KEY)"
         
-        
+       // var arrayOfTitles: [String] = []
         print(url_str)
         
+        let url2 = NSURL(string: url_str)
+        let request = NSMutableURLRequest(URL: url2!)
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithRequest(request) {
+            
+            (data, responseText, error) -> Void in if error != nil {
+                print(error)
+            } else {
+                
+                let result = String(data: data!, encoding: NSASCIIStringEncoding)!
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    self.resultJSON = result
+                    
+                    self.parseJSONResponse(data!)
+                    
+                    callback(self.books)
+                })
+            }
+        }
+        
+        task.resume()
+        
+        /*
         if let url = NSURL(string: url_str) {
             NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: {data, _, error -> Void in
                 if let error = error {
@@ -45,8 +85,8 @@ class GoogleBooksService {
                 } else {
                     if let data = data,
                         jsonResult = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
-                        arrayOfTitles = jsonResult.valueForKeyPath("items.volumeInfo.title") as? [String] {
-                            let titles = arrayOfTitles.joinWithSeparator(", ")
+                        titleArray = jsonResult.valueForKeyPath("items.volumeInfo.title") as? [String] {
+                            let titles = titleArray.joinWithSeparator(", ")
                             print("Titles: \(titles)")
                             print("Retrieved data")
                     } else {
@@ -55,10 +95,13 @@ class GoogleBooksService {
                     }
                 }
             }).resume()
+            sleep(2)
             print("Continue")
+
         }
 
-
+        return titleArray
+    */
         
     }
     
