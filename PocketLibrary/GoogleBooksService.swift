@@ -18,26 +18,19 @@ class GoogleBooksService {
     
     func parseJSONResponse( data: NSData) -> Void {
         
-        //print("Printing data")
-        //print(data)
-        
-        //var authors : [JSON] = []
         
         let json = JSON(data: data)
+        
+        if json["items"].count == 0 {
+            print("Not a book barcode")
+            
+        }
         
         for(_, book) in json["items"] {
             print("Adding a book")
             books.append(book)
         }
-        /*
-        let title = json["items"]["volumeInfo"]["title"]
-        print("Printing title")
-        print(title)
-        for (_, author) in json["items"]["volumeInfo"]["authors"] {
-            print("Printing author")
-            print(author)
-            authors.append(author)
-        }*/
+
         
     }
     
@@ -48,8 +41,7 @@ class GoogleBooksService {
         print("Querying...")
         // Create query url
         let url_str = "https://www.googleapis.com/books/v1/volumes?q=isbn:\(isbn)&key=\(self.API_KEY)"
-        
-       // var arrayOfTitles: [String] = []
+
         print(url_str)
         
         let url2 = NSURL(string: url_str)
@@ -77,31 +69,6 @@ class GoogleBooksService {
         
         task.resume()
         
-        /*
-        if let url = NSURL(string: url_str) {
-            NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: {data, _, error -> Void in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    if let data = data,
-                        jsonResult = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
-                        titleArray = jsonResult.valueForKeyPath("items.volumeInfo.title") as? [String] {
-                            let titles = titleArray.joinWithSeparator(", ")
-                            print("Titles: \(titles)")
-                            print("Retrieved data")
-                    } else {
-                        // error
-                        print("error: data")
-                    }
-                }
-            }).resume()
-            sleep(2)
-            print("Continue")
-
-        }
-
-        return titleArray
-    */
         
     }
     
@@ -109,8 +76,6 @@ class GoogleBooksService {
         self.API_KEY = API_KEY
         
     }
-    
-    
     
     
 }

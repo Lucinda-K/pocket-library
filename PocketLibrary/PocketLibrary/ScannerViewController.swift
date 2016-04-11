@@ -35,6 +35,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
     var title1 : String = ""
     var publisher : String = ""
+    var authors : [String] = []
+    var pageCount : Int = 0
+    
     
     var dataValue = ""
     var dataType = ""
@@ -135,32 +138,30 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                             let result_book = book
                             self.title1 = String(result_book["volumeInfo"]["title"])
                             self.publisher = String(result_book["volumeInfo"]["publisher"])
+                            self.pageCount = Int(String(result_book["volumeInfo"]["pageCount"]))!
+                            for author in result_book["volumeInfo"]["authors"] {
+                                self.authors.append(String(author))
+                            }
+                            
                             self.dataTypeLabel.text = self.title1
                             //let result_book = book
-                            print("Title: \(result_book["volumeInfo"]["title"])")
-                            print("Publisher: \(result_book["volumeInfo"]["publisher"])")
-                            print("hello")
+                            print("Title: \(self.title1)")
+                            print("Publisher: \(self.publisher)")
+                            print("Pages: \(self.pageCount)")
+                            print("Authors: \(self.authors.count)")
+                            print(self.authors[0])
+                            for author in self.authors {
+                                print(author)
+                            }
+                            //print("Title: \(result_book["volumeInfo"]["title"])")
+                            //print("Publisher: \(result_book["volumeInfo"]["publisher"])")
+                            //print("hello")
                             //print(book)
                             
                         }
                     print("Queried")
                 }
-                for book in books {
-                    print("hello again")
-                    let result_book = book
-                    self.title1 = String(result_book["volumeInfo"]["title"])
-                    self.publisher = String(result_book["volumeInfo"]["publisher"])
-                    print("Title: \(result_book["volumeInfo"]["title"])")
-                    print("Publisher: \(result_book["volumeInfo"]["publisher"])")
-                }
-                
-                //self.dataTypeLabel.text = decodedData.type
-                //self.dataTypeLabel.text = titleArray[0]
-                //for book in self.books {
-                //    self.dataTypeLabel.text = book["volumeInfo"]["title"]
-                //}
-               // self.dataTypeLabel.text = self.books[0]["volumeInfo"]["title"]
-                //self.dataTypeLabel.text = self.title1
+
                 print(self.dataValue)
             }
         }
