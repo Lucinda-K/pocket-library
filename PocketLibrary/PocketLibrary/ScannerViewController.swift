@@ -33,12 +33,13 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     var googlebooks: GoogleBooksService?
 
+    // These won't be needed once a Book object exists
     var title1 : String = ""
     var publisher : String = ""
     var authors : [String] = []
     var pageCount : Int = 0
     
-    
+    // These won't be needed once a view controller for displaying data exists
     var dataValue = ""
     var dataType = ""
 
@@ -46,24 +47,13 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.googlebooks = GoogleBooksService(API_KEY: api_key)
         self.setupCaptureSession()
-        /*
-        googlebooks.queryByISBN(self.dataValue) {
-            (books) in
-            self.books = books
-            for book in books {
-                let book = book
-                print(book)
-            }
-            print("Queried")
-        }
-    */
+
     }
     
     private func setupCaptureSession(){
@@ -121,7 +111,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     //MARK: Delegate Methods
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!)
     {
-        //var titleArray: [String] = []
         
         if (self.dataValue == "") {
             for metadata in metadataObjects{
@@ -144,7 +133,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                             }
                             
                             self.dataTypeLabel.text = self.title1
-                            //let result_book = book
                             print("Title: \(self.title1)")
                             print("Publisher: \(self.publisher)")
                             print("Pages: \(self.pageCount)")
@@ -153,10 +141,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                             for author in self.authors {
                                 print(author)
                             }
-                            //print("Title: \(result_book["volumeInfo"]["title"])")
-                            //print("Publisher: \(result_book["volumeInfo"]["publisher"])")
-                            //print("hello")
-                            //print(book)
+
                             
                         }
                     print("Queried")
