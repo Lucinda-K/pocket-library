@@ -26,7 +26,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureDevice:AVCaptureDevice?
     /// The UI layer to display the feed from the input source, in our case, the camera.
     var captureLayer:AVCaptureVideoPreviewLayer?
-    
+    var bookToAdd : Book?
     var books: [JSON] = []
     let api_key = valueForAPIKey(keyname: "API_KEY")
 
@@ -164,11 +164,13 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             print("Publisher: \(String(book.publisher!))")
             print("Publish date: \(String(book.publishedDateStr!))")
             print("Pages: \(book.pageCount)")
+            self.bookToAdd = book
         }
         //print("End of captureOutput function")
         if count > 0 {
             print("Ending capture session")
             self.captureSession.stopRunning()
+            performSegueWithIdentifier("addNewBook", sender: self)
         }
         //dispatch_async(dispatch_get_main_queue(), { () -> Void in
             //self.performSegueWithIdentifier("addBarcodeItem", sender: self)
@@ -191,6 +193,23 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "addNewBook" {
+            
+            if let addNewBookViewController = segue.destinationViewController as? AddNewBookViewController {
+                let book = self.bookToAdd
+                addNewBookViewController.book = book
+            }
+            
+        }
+    }
 
 }
 
