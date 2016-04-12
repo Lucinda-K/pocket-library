@@ -30,7 +30,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var books: [JSON] = []
     let api_key = valueForAPIKey(keyname: "API_KEY")
 
-    
+    var collection : [Book] = []
     var googlebooks: GoogleBooksService?
 
     // These won't be needed once a Book object exists
@@ -111,9 +111,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     //MARK: Delegate Methods
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!)
     {
-        
+        print("Capturing metadata...")
         if (self.dataValue == "") {
             for metadata in metadataObjects{
+                print("Decoding metadata...")
                 let decodedData:AVMetadataMachineReadableCodeObject = metadata as! AVMetadataMachineReadableCodeObject
                 self.dataLabel.text = decodedData.stringValue
                 self.dataValue = decodedData.stringValue
@@ -123,6 +124,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                     (books) in
                         self.books = books
                         for book in books {
+                            
+                            let book = Book(data: book)
+                            self.collection.append(book)
+                            /*
                             self.books.append(book)
                             let result_book = book
                             self.title1 = String(result_book["volumeInfo"]["title"])
@@ -131,8 +136,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                             for author in result_book["volumeInfo"]["authors"] {
                                 self.authors.append(String(author))
                             }
-                            
-                            self.dataTypeLabel.text = self.title1
+                            */
+                            //self.dataTypeLabel.text = self.title1
+                            /*
                             print("Title: \(self.title1)")
                             print("Publisher: \(self.publisher)")
                             print("Pages: \(self.pageCount)")
@@ -141,15 +147,32 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                             for author in self.authors {
                                 print(author)
                             }
-
+                            */
                             
                         }
                     print("Queried")
                 }
-
-                print(self.dataValue)
+                //print(self.dataValue)
             }
         }
+        var count = 0
+        for book in self.collection {
+            print("Book found")
+            count+=1
+            print("Book: \(count)")
+            print("Title: \(book.title)")
+            print("Publisher: \(String(book.publisher!))")
+            print("Publish date: \(String(book.publishedDateStr!))")
+            print("Pages: \(book.pageCount)")
+        }
+        //print("End of captureOutput function")
+        if count > 0 {
+            print("Ending capture session")
+            self.captureSession.stopRunning()
+        }
+        //dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            //self.performSegueWithIdentifier("addBarcodeItem", sender: self)
+        //})
     }
     
     //MARK: Utility Functions

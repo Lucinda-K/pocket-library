@@ -46,8 +46,7 @@ class Book {
         self.publisher = String(json["volumeInfo"]["publisher"])
         self.publishedDateStr = String(json["volumeInfo"]["publishedDate"])
         self.description = String(json["volumeInfo"]["description"])
-
-        self.pageCount = Int(String(json["pageCount"]))!
+        self.pageCount = Int(String(json["pageCount"]))
         
         //self.imageurl = "http://static.giantbomb.com/" + json["image"]["super_url"].stringValue
         
