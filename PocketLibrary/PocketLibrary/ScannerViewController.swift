@@ -170,7 +170,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         if count > 0 {
             print("Ending capture session")
             self.captureSession.stopRunning()
-            performSegueWithIdentifier("addNewBook", sender: self)
+            performSegueWithIdentifier("addNewBook2", sender: self)
         }
         //dispatch_async(dispatch_get_main_queue(), { () -> Void in
             //self.performSegueWithIdentifier("addBarcodeItem", sender: self)
@@ -201,11 +201,15 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if segue.identifier == "addNewBook" {
+        if segue.identifier == "addNewBook2" {
             
             if let addNewBookViewController = segue.destinationViewController as? AddNewBookViewController {
                 let book = self.bookToAdd
                 addNewBookViewController.book = book
+            }
+            if let addNewBookTableViewController = segue.destinationViewController as? AddNewBookTableViewController {
+                let book = self.bookToAdd
+                addNewBookTableViewController.book = book
             }
             
         }

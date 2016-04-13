@@ -42,6 +42,7 @@ class Book {
         self.subtitle = String(json["volumeInfo"]["subtitle"])
         
         for index in 0...json["volumeInfo"]["authors"].count-1 {
+            // Add each author to object
             addAuthor(json["volumeInfo"]["authors"][index].stringValue)
         }
  
