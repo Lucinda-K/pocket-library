@@ -23,8 +23,12 @@ class AddNewBookViewController: UIViewController {
         
         titleLabel.text = book.title
         authorLabel.text = book.authors[0]
-        publisherLabel.text = book.publisher!
-        publishDateLabel.text = book.publishedDateStr!
+        if let publisher = book.publisher {
+            publisherLabel.text = publisher
+        }
+        if let publishDate = book.publishedDateStr {
+            publishDateLabel.text = publishDate
+        }
         
         
 

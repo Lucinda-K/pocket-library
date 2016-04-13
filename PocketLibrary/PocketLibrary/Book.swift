@@ -15,7 +15,9 @@ class Book {
     var id : String = ""
     var title : String = ""
     var subtitle : String?
+    var author : String = ""
     var authors : [String] = []
+    var authorStr : String = ""
     var publisher : String?
     var publishedDate : NSDate?
     var publishedDateStr : String?
@@ -28,10 +30,8 @@ class Book {
     var retailPrice : Double?
     var averageRating : Double?
     var imageurl_thumbnail : String?
-    
-    // default to false
-    var isFavorite : Bool = false
-    var owned : Bool = false
+    var list : [String] = ["1","2","3"]
+
     
     var notes : String?
     
@@ -40,18 +40,32 @@ class Book {
         self.id = String(json["id"])
         self.title = String(json["volumeInfo"]["title"])
         self.subtitle = String(json["volumeInfo"]["subtitle"])
-        for author in json["volumeInfo"]["authors"] {
-            self.authors.append(String(author))
+        
+        for index in 0...json["volumeInfo"]["authors"].count-1 {
+            addAuthor(json["volumeInfo"]["authors"][index].stringValue)
         }
+ 
         self.publisher = String(json["volumeInfo"]["publisher"])
         self.publishedDateStr = String(json["volumeInfo"]["publishedDate"])
         self.description = String(json["volumeInfo"]["description"])
-        self.pageCount = Int(String(json["pageCount"]))
+        self.pageCount = Int(String(json["volumeInfo"]["pageCount"]))
         
         //self.imageurl = "http://static.giantbomb.com/" + json["image"]["super_url"].stringValue
         
     }
     
+    func addAuthor(author: String) {
+        //print("Adding author \(self.authors.count): \(author)")
+        // Add author to list
+        self.authors.append(author)
+        // Add to author string (only include comma if more than 1 author)
+        if self.authors.count > 1 {
+            self.authorStr = self.authorStr + ", "
+        }
+        self.authorStr = self.authorStr + author
+        //print("New author list: \(self.authors)")
+        //print("New author string: \(self.authorStr)")
+    }
     
     init(data: JSON) {
         print("Adding Book object")
