@@ -13,6 +13,7 @@ class Book {
     
     // Book information
     var id : String = ""
+    var isbn: String = ""
     var title : String = ""
     var subtitle : String?
     var author : String = ""
@@ -37,7 +38,20 @@ class Book {
     
     func parseJSON(json: JSON) {
         
+        var isbns : [String] = []
+        
         self.id = String(json["id"])
+        
+        for i in 0...json["volumeInfo"]["industryIdentifiers"].count-1 {
+            isbns.append(json["volumeInfo"]["industryIdentifiers"][i]["identifier"].stringValue)
+        }
+        //print(isbns)
+        self.isbn = isbns[1]
+        print(self.isbn)
+        //isbns = json["volumeInfo"]["industryIdentifiers"]
+        //print(json["volumeInfo"]["industryIndentifiers"])
+        
+        self.isbn = String(json["volumeInfo"]["industryIdentifiers"])
         self.title = String(json["volumeInfo"]["title"])
         self.subtitle = String(json["volumeInfo"]["subtitle"])
         

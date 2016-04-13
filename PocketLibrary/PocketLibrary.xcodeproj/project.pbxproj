@@ -9,12 +9,20 @@
 /* Begin PBXBuildFile section */
 		68F263AE1CB3085500C80ACB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F263AD1CB3085500C80ACB /* AppDelegate.swift */; };
 		68F263B01CB3085500C80ACB /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F263AF1CB3085500C80ACB /* ScannerViewController.swift */; };
-		68F263B21CB3085500C80ACB /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F263B11CB3085500C80ACB /* SecondViewController.swift */; };
 		68F263B51CB3085500C80ACB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68F263B31CB3085500C80ACB /* Main.storyboard */; };
 		68F263B71CB3085500C80ACB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68F263B61CB3085500C80ACB /* Assets.xcassets */; };
 		68F263BA1CB3085600C80ACB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68F263B81CB3085600C80ACB /* LaunchScreen.storyboard */; };
 		68F263C51CB3085600C80ACB /* PocketLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F263C41CB3085600C80ACB /* PocketLibraryTests.swift */; };
 		68F263D01CB3085600C80ACB /* PocketLibraryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F263CF1CB3085600C80ACB /* PocketLibraryUITests.swift */; };
+		8435138D1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435138C1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift */; };
+		8435138F1CBEF22700AA9EF9 /* AddNewBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435138E1CBEF22700AA9EF9 /* AddNewBookViewController.swift */; };
+		843513911CBEF23000AA9EF9 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843513901CBEF23000AA9EF9 /* ApiKeys.swift */; };
+		843513931CBEF23700AA9EF9 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843513921CBEF23700AA9EF9 /* Book.swift */; };
+		843513951CBEF23E00AA9EF9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843513941CBEF23E00AA9EF9 /* MapViewController.swift */; };
+		843513971CBEF24600AA9EF9 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843513961CBEF24600AA9EF9 /* SwiftyJSON.swift */; };
+		843513991CBEF25600AA9EF9 /* GoogleBooksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843513981CBEF25600AA9EF9 /* GoogleBooksService.swift */; };
+		8435139B1CBEF50B00AA9EF9 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8435139A1CBEF50B00AA9EF9 /* ApiKeys.plist */; };
+		8435139D1CBEFA9400AA9EF9 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435139C1CBEFA9400AA9EF9 /* Collection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +46,6 @@
 		68F263AA1CB3085500C80ACB /* PocketLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F263AD1CB3085500C80ACB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68F263AF1CB3085500C80ACB /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
-		68F263B11CB3085500C80ACB /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		68F263B41CB3085500C80ACB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		68F263B61CB3085500C80ACB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68F263B91CB3085600C80ACB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +56,15 @@
 		68F263CB1CB3085600C80ACB /* PocketLibraryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketLibraryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F263CF1CB3085600C80ACB /* PocketLibraryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketLibraryUITests.swift; sourceTree = "<group>"; };
 		68F263D11CB3085600C80ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8435138C1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewBookTableViewController.swift; sourceTree = "<group>"; };
+		8435138E1CBEF22700AA9EF9 /* AddNewBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewBookViewController.swift; sourceTree = "<group>"; };
+		843513901CBEF23000AA9EF9 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
+		843513921CBEF23700AA9EF9 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		843513941CBEF23E00AA9EF9 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		843513961CBEF24600AA9EF9 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		843513981CBEF25600AA9EF9 /* GoogleBooksService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleBooksService.swift; sourceTree = SOURCE_ROOT; };
+		8435139A1CBEF50B00AA9EF9 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
+		8435139C1CBEFA9400AA9EF9 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +115,17 @@
 		68F263AC1CB3085500C80ACB /* PocketLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				8435139A1CBEF50B00AA9EF9 /* ApiKeys.plist */,
 				68F263AD1CB3085500C80ACB /* AppDelegate.swift */,
 				68F263AF1CB3085500C80ACB /* ScannerViewController.swift */,
-				68F263B11CB3085500C80ACB /* SecondViewController.swift */,
+				843513981CBEF25600AA9EF9 /* GoogleBooksService.swift */,
+				843513961CBEF24600AA9EF9 /* SwiftyJSON.swift */,
+				843513941CBEF23E00AA9EF9 /* MapViewController.swift */,
+				843513921CBEF23700AA9EF9 /* Book.swift */,
+				8435139C1CBEFA9400AA9EF9 /* Collection.swift */,
+				843513901CBEF23000AA9EF9 /* ApiKeys.swift */,
+				8435138E1CBEF22700AA9EF9 /* AddNewBookViewController.swift */,
+				8435138C1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift */,
 				68F263B31CB3085500C80ACB /* Main.storyboard */,
 				68F263B61CB3085500C80ACB /* Assets.xcassets */,
 				68F263B81CB3085600C80ACB /* LaunchScreen.storyboard */,
@@ -234,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68F263BA1CB3085600C80ACB /* LaunchScreen.storyboard in Resources */,
+				8435139B1CBEF50B00AA9EF9 /* ApiKeys.plist in Resources */,
 				68F263B71CB3085500C80ACB /* Assets.xcassets in Resources */,
 				68F263B51CB3085500C80ACB /* Main.storyboard in Resources */,
 			);
@@ -260,9 +285,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68F263B21CB3085500C80ACB /* SecondViewController.swift in Sources */,
 				68F263AE1CB3085500C80ACB /* AppDelegate.swift in Sources */,
+				8435139D1CBEFA9400AA9EF9 /* Collection.swift in Sources */,
+				843513931CBEF23700AA9EF9 /* Book.swift in Sources */,
+				843513991CBEF25600AA9EF9 /* GoogleBooksService.swift in Sources */,
+				843513911CBEF23000AA9EF9 /* ApiKeys.swift in Sources */,
 				68F263B01CB3085500C80ACB /* ScannerViewController.swift in Sources */,
+				8435138F1CBEF22700AA9EF9 /* AddNewBookViewController.swift in Sources */,
+				843513971CBEF24600AA9EF9 /* SwiftyJSON.swift in Sources */,
+				8435138D1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift in Sources */,
+				843513951CBEF23E00AA9EF9 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,7 +440,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PocketLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cse40333.PocketLibrary;
+				PRODUCT_BUNDLE_IDENTIFIER = cse40333;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -422,7 +454,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PocketLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cse40333.PocketLibrary;
+				PRODUCT_BUNDLE_IDENTIFIER = cse40333;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
