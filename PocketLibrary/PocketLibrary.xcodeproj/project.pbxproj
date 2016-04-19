@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		687C54121CC5AC06008D0546 /* MyLibraryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687C54111CC5AC06008D0546 /* MyLibraryTableViewController.swift */; };
+		68A1FFA11CC6C45E00DFC848 /* MyLibraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A1FFA01CC6C45E00DFC848 /* MyLibraryTableViewCell.swift */; };
 		68F263AE1CB3085500C80ACB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F263AD1CB3085500C80ACB /* AppDelegate.swift */; };
 		68F263B01CB3085500C80ACB /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F263AF1CB3085500C80ACB /* ScannerViewController.swift */; };
 		68F263B51CB3085500C80ACB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68F263B31CB3085500C80ACB /* Main.storyboard */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		687C54111CC5AC06008D0546 /* MyLibraryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLibraryTableViewController.swift; sourceTree = "<group>"; };
+		68A1FFA01CC6C45E00DFC848 /* MyLibraryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLibraryTableViewCell.swift; sourceTree = "<group>"; };
 		68F263AA1CB3085500C80ACB /* PocketLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F263AD1CB3085500C80ACB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68F263AF1CB3085500C80ACB /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 				8435138E1CBEF22700AA9EF9 /* AddNewBookViewController.swift */,
 				8435138C1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift */,
 				68F263B31CB3085500C80ACB /* Main.storyboard */,
+				687C54111CC5AC06008D0546 /* MyLibraryTableViewController.swift */,
+				68A1FFA01CC6C45E00DFC848 /* MyLibraryTableViewCell.swift */,
 				68F263B61CB3085500C80ACB /* Assets.xcassets */,
 				68F263B81CB3085600C80ACB /* LaunchScreen.storyboard */,
 				68F263BB1CB3085600C80ACB /* Info.plist */,
@@ -286,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68F263AE1CB3085500C80ACB /* AppDelegate.swift in Sources */,
+				68A1FFA11CC6C45E00DFC848 /* MyLibraryTableViewCell.swift in Sources */,
 				8435139D1CBEFA9400AA9EF9 /* Collection.swift in Sources */,
 				843513931CBEF23700AA9EF9 /* Book.swift in Sources */,
 				843513991CBEF25600AA9EF9 /* GoogleBooksService.swift in Sources */,
@@ -293,6 +300,7 @@
 				68F263B01CB3085500C80ACB /* ScannerViewController.swift in Sources */,
 				8435138F1CBEF22700AA9EF9 /* AddNewBookViewController.swift in Sources */,
 				843513971CBEF24600AA9EF9 /* SwiftyJSON.swift in Sources */,
+				687C54121CC5AC06008D0546 /* MyLibraryTableViewController.swift in Sources */,
 				8435138D1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift in Sources */,
 				843513951CBEF23E00AA9EF9 /* MapViewController.swift in Sources */,
 			);
