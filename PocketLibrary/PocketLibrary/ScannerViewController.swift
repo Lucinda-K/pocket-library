@@ -19,6 +19,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     @IBOutlet weak var dataTypeLabel: UILabel!
     
+    @IBAction func cancelToScannerViewController(segue: UIStoryboardSegue) { }
+    
     //MARK: Properties
     /// Runs the capture session.
     let captureSession = AVCaptureSession()
@@ -194,7 +196,11 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     
+    
+    
     // MARK: - Navigation
+    
+
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
