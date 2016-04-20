@@ -12,13 +12,24 @@ class MyLibraryTableViewController: UITableViewController {
 
     
     var myLibrary = Collection()
-
+    
+    var book1 = Book(title: "Harry Potter and the Prisoner of Azkaban", authors: ["J.K. Rowling"])
+    var book2 = Book(title: "Story of a Soul", authors: ["Therese of Lisieux"])
+    
     // Unwind segue from cancel button
     @IBAction func cancelToLibraryViewController(segue: UIStoryboardSegue) {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        myLibrary.addBook(book1)
+        myLibrary.addBook(book2)
+        
+        for book in myLibrary.books {
+            print(book.title)
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -51,9 +62,10 @@ class MyLibraryTableViewController: UITableViewController {
         var book : Book
         
         book = myLibrary.books[indexPath.row]
+
         
-        cell.titleLabel.text = book.title
-        cell.authorLabel.text = book.authorStr
+        cell.titleLabel!.text = book.title
+        cell.authorLabel!.text = book.authorStr
         
         return cell
     }

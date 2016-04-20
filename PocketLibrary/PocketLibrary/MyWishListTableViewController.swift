@@ -13,6 +13,8 @@ class MyWishListTableViewController: UITableViewController {
     var myWishList = Collection()
 
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,7 +44,7 @@ class MyWishListTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("WishListCell", forIndexPath: indexPath) as! MyWishListTableViewCell
         
         // Configure the cell...
         var book : Book

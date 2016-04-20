@@ -32,7 +32,6 @@ class Book {
     var averageRating : Double?
     var imageurl_thumbnail : String?
     var list : [String] = ["1","2","3"]
-
     
     var notes : String?
     
@@ -87,5 +86,15 @@ class Book {
         self.parseJSON(data)
         print("Name: \(self.title)")
     }
+    
+    init(title: String, authors: [String]) {
+        
+        self.title = title
+        for newAuthor in authors {
+            self.addAuthor(newAuthor)
+        }
+    }
+    
+    
     
 }

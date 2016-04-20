@@ -42,15 +42,22 @@ class MyReadingTableViewController: UITableViewController {
         return myReading.bookCount
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("ReadingCell", forIndexPath: indexPath) as! MyReadingTableViewCell
 
         // Configure the cell...
-
+        var book : Book
+        
+        book = myReading.books[indexPath.row]
+        
+        cell.titleLabel.text = book.title
+        cell.authorLabel.text = book.authorStr
+        
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
