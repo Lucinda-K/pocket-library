@@ -11,7 +11,7 @@ import UIKit
 class AddNewBookTableViewController: UITableViewController {
 
     var book : Book?
-    
+    var myCollection : Collection?
     
     @IBOutlet weak var titleCell: UITableViewCell!
     @IBOutlet weak var authorsCell: UITableViewCell!
@@ -24,6 +24,10 @@ class AddNewBookTableViewController: UITableViewController {
     @IBOutlet weak var publishDatelabel: UILabel!
     @IBOutlet weak var pageCountLabel: UILabel!
     
+    @IBAction func saveBook(sender: AnyObject) {
+        
+        myCollection?.addBook(book!)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -19,6 +19,9 @@ class MyLibraryTableViewController: UITableViewController {
     // Unwind segue from cancel button
     @IBAction func cancelToLibraryViewController(segue: UIStoryboardSegue) {}
     
+    @IBAction func unwindToLibraryViewControll(segue: UIStoryboardSegue) { }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -106,14 +109,27 @@ class MyLibraryTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        
+        if segue.identifier == "LibraryToScanner" {
+            
+            if let scannerViewController = segue.destinationViewController as? ScannerViewController {
+                let collection = self.myLibrary
+                scannerViewController.myCollection = collection
+            }
+
+        }
+
+        
+        
     }
-    */
+    
 
 }

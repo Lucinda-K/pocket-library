@@ -45,6 +45,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var dataValue = ""
     var dataType = ""
 
+    // For passing the collection
+    var myCollection : Collection?
+    
     //MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -207,7 +210,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if segue.identifier == "addNewBook2" {
+        if segue.identifier == "ScannerToNewBook" {
             
             if let addNewBookViewController = segue.destinationViewController as? AddNewBookViewController {
                 let book = self.bookToAdd
@@ -216,6 +219,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             if let addNewBookTableViewController = segue.destinationViewController as? AddNewBookTableViewController {
                 let book = self.bookToAdd
                 addNewBookTableViewController.book = book
+                addNewBookTableViewController.myCollection = self.myCollection
             }
             
         }
