@@ -25,6 +25,10 @@
 		843513991CBEF25600AA9EF9 /* GoogleBooksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843513981CBEF25600AA9EF9 /* GoogleBooksService.swift */; };
 		8435139B1CBEF50B00AA9EF9 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8435139A1CBEF50B00AA9EF9 /* ApiKeys.plist */; };
 		8435139D1CBEFA9400AA9EF9 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435139C1CBEFA9400AA9EF9 /* Collection.swift */; };
+		84C68C0E1CC6FF060067257C /* MyReadingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C68C0D1CC6FF060067257C /* MyReadingTableViewController.swift */; };
+		84C68C101CC6FF370067257C /* MyWishListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C68C0F1CC6FF370067257C /* MyWishListTableViewController.swift */; };
+		84C68C121CC7080C0067257C /* MyReadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C68C111CC7080C0067257C /* MyReadingTableViewCell.swift */; };
+		84C68C141CC7081E0067257C /* MyWishListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C68C131CC7081E0067257C /* MyWishListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +73,10 @@
 		843513981CBEF25600AA9EF9 /* GoogleBooksService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleBooksService.swift; sourceTree = SOURCE_ROOT; };
 		8435139A1CBEF50B00AA9EF9 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		8435139C1CBEFA9400AA9EF9 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		84C68C0D1CC6FF060067257C /* MyReadingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyReadingTableViewController.swift; sourceTree = "<group>"; };
+		84C68C0F1CC6FF370067257C /* MyWishListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyWishListTableViewController.swift; sourceTree = "<group>"; };
+		84C68C111CC7080C0067257C /* MyReadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyReadingTableViewCell.swift; sourceTree = "<group>"; };
+		84C68C131CC7081E0067257C /* MyWishListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyWishListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +139,10 @@
 				8435138E1CBEF22700AA9EF9 /* AddNewBookViewController.swift */,
 				8435138C1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift */,
 				68F263B31CB3085500C80ACB /* Main.storyboard */,
+				84C68C111CC7080C0067257C /* MyReadingTableViewCell.swift */,
+				84C68C131CC7081E0067257C /* MyWishListTableViewCell.swift */,
+				84C68C0D1CC6FF060067257C /* MyReadingTableViewController.swift */,
+				84C68C0F1CC6FF370067257C /* MyWishListTableViewController.swift */,
 				687C54111CC5AC06008D0546 /* MyLibraryTableViewController.swift */,
 				68A1FFA01CC6C45E00DFC848 /* MyLibraryTableViewCell.swift */,
 				68F263B61CB3085500C80ACB /* Assets.xcassets */,
@@ -299,9 +311,13 @@
 				843513911CBEF23000AA9EF9 /* ApiKeys.swift in Sources */,
 				68F263B01CB3085500C80ACB /* ScannerViewController.swift in Sources */,
 				8435138F1CBEF22700AA9EF9 /* AddNewBookViewController.swift in Sources */,
+				84C68C141CC7081E0067257C /* MyWishListTableViewCell.swift in Sources */,
 				843513971CBEF24600AA9EF9 /* SwiftyJSON.swift in Sources */,
+				84C68C0E1CC6FF060067257C /* MyReadingTableViewController.swift in Sources */,
+				84C68C121CC7080C0067257C /* MyReadingTableViewCell.swift in Sources */,
 				687C54121CC5AC06008D0546 /* MyLibraryTableViewController.swift in Sources */,
 				8435138D1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift in Sources */,
+				84C68C101CC6FF370067257C /* MyWishListTableViewController.swift in Sources */,
 				843513951CBEF23E00AA9EF9 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

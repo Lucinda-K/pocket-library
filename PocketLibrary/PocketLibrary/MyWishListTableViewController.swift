@@ -1,20 +1,17 @@
 //
-//  MyLibraryTableViewController.swift
+//  MyWishListTableViewController.swift
 //  PocketLibrary
 //
-//  Created by Lucinda Krahl on 4/18/16.
+//  Created by Admin on 4/19/16.
 //  Copyright © 2016 Lucinda Krahl. All rights reserved.
 //
 
 import UIKit
 
-class MyLibraryTableViewController: UITableViewController {
+class MyWishListTableViewController: UITableViewController {
 
-    
-    var myLibrary = Collection()
+    var myWishList = Collection()
 
-    // Unwind segue from cancel button
-    @IBAction func cancelToLibraryViewController(segue: UIStoryboardSegue) {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,22 +37,23 @@ class MyLibraryTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return myLibrary.bookCount
+        return myWishList.bookCount
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("LibraryBookCell", forIndexPath: indexPath) as! MyLibraryTableViewCell
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        
         // Configure the cell...
         var book : Book
         
-        book = myLibrary.books[indexPath.row]
+        book = myWishList.books[indexPath.row]
         
         cell.titleLabel.text = book.title
         cell.authorLabel.text = book.authorStr
         
         return cell
+
     }
     
 

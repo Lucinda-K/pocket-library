@@ -1,24 +1,23 @@
 //
-//  MyLibraryTableViewController.swift
+//  MyReadingTableViewController.swift
 //  PocketLibrary
 //
-//  Created by Lucinda Krahl on 4/18/16.
+//  Created by Admin on 4/19/16.
 //  Copyright © 2016 Lucinda Krahl. All rights reserved.
 //
 
 import UIKit
 
-class MyLibraryTableViewController: UITableViewController {
-
+class MyReadingTableViewController: UITableViewController {
     
-    var myLibrary = Collection()
-
-    // Unwind segue from cancel button
-    @IBAction func cancelToLibraryViewController(segue: UIStoryboardSegue) {}
+    var myReading = Collection()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -40,24 +39,18 @@ class MyLibraryTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return myLibrary.bookCount
+        return myReading.bookCount
     }
 
-    
+    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("LibraryBookCell", forIndexPath: indexPath) as! MyLibraryTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
         // Configure the cell...
-        var book : Book
-        
-        book = myLibrary.books[indexPath.row]
-        
-        cell.titleLabel.text = book.title
-        cell.authorLabel.text = book.authorStr
-        
+
         return cell
     }
-    
+    */
 
     /*
     // Override to support conditional editing of the table view.
