@@ -9,9 +9,9 @@
 import Foundation
 
 
-class Collection {
+class Collection: NSObject, NSCoding {
     
-    
+    var name : String
     var books : [Book] = []   // list of Book objects
     var bookCount : Int = 0
     var pageTotal : Int = 0
@@ -33,8 +33,49 @@ class Collection {
         
     }
     
-    init() {
+    // MARK: Properties
+    
+    struct PropertyKey {
+        static let nameKey = "name"
+        static let booksKey = "books"
+        static let bookCountKey = "bookCount"
+    }
+    
+    // MARK: NSCoding
+    
+    
+    //https://developer.apple.com/library/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Lesson10.html
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
+        aCoder.encodeObject(books, forKey: PropertyKey.booksKey)
+        aCoder.encodeObject(bookCount, forKey: PropertyKey.bookCountKey)
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
         
+        let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
+        let books = aDecoder.decodeObjectForKey(PropertyKey.booksKey) as! [Book]
+        let bookCount = aDecoder.decodeIntegerForKey(PropertyKey.booksKey) as! Int
+        
+        // Must call designated initializer
+        
+        self.init(name: name, books: books, bookCount: bookCount)
+        
+    }
+    
+    init?(name: String, books: [Book], bookCount: Int) {
+        
+        // Initialize stored properties
+        self.name = name
+        self.books = books
+        self.bookCount = bookCount
+        
+        super.init()
+        
+        // Initialization should fail if there is no name
+        if name.isEmpty {
+            return nil
+        }
     }
     
 }

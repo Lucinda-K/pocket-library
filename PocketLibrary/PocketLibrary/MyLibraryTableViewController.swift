@@ -11,7 +11,7 @@ import UIKit
 class MyLibraryTableViewController: UITableViewController {
 
     
-    var myLibrary = Collection()
+    var myLibrary = Collection(name: "myLibrary", books: [], bookCount: 0)
     
     var book1 = Book(title: "Harry Potter and the Prisoner of Azkaban", authors: ["J.K. Rowling"])
     var book2 = Book(title: "Story of a Soul", authors: ["Therese of Lisieux"])
