@@ -33,6 +33,12 @@ class Collection: NSObject, NSCoding {
         
     }
     
+    // MARK: Archiving Paths
+    
+    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("collection")
+    
+    
     // MARK: Properties
     
     struct PropertyKey {
@@ -55,7 +61,7 @@ class Collection: NSObject, NSCoding {
         
         let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
         let books = aDecoder.decodeObjectForKey(PropertyKey.booksKey) as! [Book]
-        let bookCount = aDecoder.decodeIntegerForKey(PropertyKey.booksKey) as! Int
+        let bookCount = aDecoder.decodeObjectForKey(PropertyKey.booksKey) as! Int
         
         // Must call designated initializer
         

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit        // for image
 
-class Book {
+class Book: NSObject, NSCoding {
     
     // Book information
     var id : String = ""
@@ -22,7 +22,7 @@ class Book {
     var publisher : String?
     var publishedDate : NSDate?
     var publishedDateStr : String?
-    var description : String?
+    //var description : String?
     var pageCount : Int?
     var mainCategory : String?
     var categories : [String]?
@@ -61,7 +61,7 @@ class Book {
  
         self.publisher = String(json["volumeInfo"]["publisher"])
         self.publishedDateStr = String(json["volumeInfo"]["publishedDate"])
-        self.description = String(json["volumeInfo"]["description"])
+        //self.description = String(json["volumeInfo"]["description"])
         self.pageCount = Int(String(json["volumeInfo"]["pageCount"]))
         
         //self.imageurl = "http://static.giantbomb.com/" + json["image"]["super_url"].stringValue
@@ -81,18 +81,112 @@ class Book {
         //print("New author string: \(self.authorStr)")
     }
     
+    
+    // MARK: Archiving Paths
+    
+    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("books")
+    
+    
+    // MARK: Properties
+    
+    struct PropertyKey {
+        
+        static let idKey = "id"
+        static let isbnKey = "isbn"
+        static let titleKey = "title"
+        static let subtitleKey = "subtitle"
+        static let authorKey = "author"
+        static let authorsKey = "authors"
+        static let authorStrKey = "authorStr"
+        static let publisherKey = "publisher"
+        static let publishedDateKey = "publishedDate"
+        static let publishedDateStrKey = "publishedDateStr"
+        //static let descriptionKey = "description"
+        static let pageCountKey = "pageCount"
+        static let mainCategoryKey = "mainCategory"
+        static let categoriesKey = "categories"
+        static let languageKey = "language"
+        static let listPriceKey = "listPrcie"
+        static let retailPriceKey = "retailPrice"
+
+    }
+    
+    // MARK: NSCoding
+    
+    
+    //https://developer.apple.com/library/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Lesson10.html
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        
+        aCoder.encodeObject(id, forKey: PropertyKey.idKey)
+        aCoder.encodeObject(isbn, forKey: PropertyKey.isbnKey)
+        aCoder.encodeObject(title, forKey: PropertyKey.titleKey)
+        aCoder.encodeObject(subtitle, forKey: PropertyKey.subtitleKey)
+        aCoder.encodeObject(author, forKey: PropertyKey.authorKey)
+        aCoder.encodeObject(authors, forKey: PropertyKey.authorsKey)
+        aCoder.encodeObject(authorStr, forKey: PropertyKey.authorStrKey)
+        aCoder.encodeObject(publisher, forKey: PropertyKey.publisherKey)
+        aCoder.encodeObject(publishedDate, forKey: PropertyKey.publishedDateKey)
+        aCoder.encodeObject(publishedDateStr, forKey: PropertyKey.publishedDateStrKey)
+        //aCoder.encodeObject(description, forKey: PropertyKey.descriptionKey)
+        aCoder.encodeObject(pageCount, forKey: PropertyKey.pageCountKey)
+        aCoder.encodeObject(mainCategory, forKey: PropertyKey.mainCategoryKey)
+        aCoder.encodeObject(categories, forKey: PropertyKey.categoriesKey)
+        aCoder.encodeObject(language, forKey: PropertyKey.languageKey)
+        aCoder.encodeObject(listPrice, forKey: PropertyKey.listPriceKey)
+        aCoder.encodeObject(retailPrice, forKey: PropertyKey.retailPriceKey)
+        
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        
+        //let id = aDecoder.decodeObjectForKey(PropertyKey.idKey) as! String
+        //let isbn = aDecoder.decodeObjectForKey(PropertyKey.isbnKey) as! String
+        let title = aDecoder.decodeObjectForKey(PropertyKey.titleKey) as! String
+        //let subtitle = aDecoder.decodeObjectForKey(PropertyKey.subtitleKey) as? String
+        //let author = aDecoder.decodeObjectForKey(PropertyKey.authorKey) as! String
+        let authors = aDecoder.decodeObjectForKey(PropertyKey.authorsKey) as! [String]
+        //let authorStr = aDecoder.decodeObjectForKey(PropertyKey.authorStrKey) as! String
+        //let publisher = aDecoder.decodeObjectForKey(PropertyKey.publisherKey) as? String
+        //let publishedDate = aDecoder.decodeObjectForKey(PropertyKey.publishedDateKey) as? NSDate
+        //let publishedDateStr = aDecoder.decodeObjectForKey(PropertyKey.publishedDateStrKey) as? String
+        //let description = aDecoder.decodeObjectForKey(PropertyKey.descriptionKey) as? String
+        //let pageCount = aDecoder.decodeObjectForKey(PropertyKey.pageCountKey) as? Int
+        //let mainCategory = aDecoder.decodeObjectForKey(PropertyKey.mainCategoryKey) as? String
+        //let categories = aDecoder.decodeObjectForKey(PropertyKey.categoriesKey) as? [String]
+        //let language = aDecoder.decodeObjectForKey(PropertyKey.languageKey) as! String
+        //let listPrice = aDecoder.decodeObjectForKey(PropertyKey.listPriceKey) as? Double
+        //let retailPrice = aDecoder.decodeObjectForKey(PropertyKey.retailPriceKey) as? Double
+        
+        
+        
+        // Must call designated initializer
+        
+        self.init(title: title, authors: authors)
+        
+    }
+    
     init(data: JSON) {
         print("Adding Book object")
         self.parseJSON(data)
         print("Name: \(self.title)")
     }
     
-    init(title: String, authors: [String]) {
+    init?(title: String, authors: [String]) {
         
         self.title = title
         for newAuthor in authors {
             self.addAuthor(newAuthor)
         }
+
+        super.init()
+        
+        // Initialization should fail if there is no name
+        if title.isEmpty {
+            return nil
+        }
+
     }
     
     
