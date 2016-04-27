@@ -104,6 +104,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		689BAD641CD1078F002E027E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		689BAD651CD10797002E027E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		689BAD661CD107A2002E027E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		68F263A11CB3085500C80ACB = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +148,9 @@
 		68F263AC1CB3085500C80ACB /* PocketLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				689BAD661CD107A2002E027E /* Controller */,
+				689BAD651CD10797002E027E /* View */,
+				689BAD641CD1078F002E027E /* Model */,
 				8435139A1CBEF50B00AA9EF9 /* ApiKeys.plist */,
 				68F263AD1CB3085500C80ACB /* AppDelegate.swift */,
 				68F263AF1CB3085500C80ACB /* ScannerViewController.swift */,

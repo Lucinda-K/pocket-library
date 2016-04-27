@@ -25,12 +25,16 @@ class AddNewBookTableViewController: UITableViewController {
     @IBOutlet weak var pageCountLabel: UILabel!
     
     @IBAction func saveBook(sender: AnyObject) {
-        
+    
+        print("You clicked Save")
         myCollection?.addBook(book!)
+    self.performSegueWithIdentifier("unwindToLibrary", sender: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("View loaded")
 
         if let newBook = book {
             titleLabel!.text = newBook.title
@@ -52,9 +56,9 @@ class AddNewBookTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
     /*
+    // MARK: - Table view data source
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
@@ -64,7 +68,7 @@ class AddNewBookTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
-
+    */
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
@@ -110,14 +114,26 @@ class AddNewBookTableViewController: UITableViewController {
     }
     */
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "unwindToLibrary" {
+            
+            if let libraryTableViewController = segue.destinationViewController as? MyLibraryTableViewController {
+                let collection = self.myCollection
+                libraryTableViewController.myLibrary = collection!
+            }
+            
+        }
+
+        
+        
     }
-    */
-    */
+
+
 }

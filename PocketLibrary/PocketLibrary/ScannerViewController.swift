@@ -175,7 +175,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         if count > 0 {
             print("Ending capture session")
             self.captureSession.stopRunning()
-            performSegueWithIdentifier("addNewBook2", sender: self)
+            performSegueWithIdentifier("ScannerToNewBook", sender: self)
         }
         //dispatch_async(dispatch_get_main_queue(), { () -> Void in
             //self.performSegueWithIdentifier("addBarcodeItem", sender: self)

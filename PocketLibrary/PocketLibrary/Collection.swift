@@ -18,8 +18,10 @@ class Collection {
     var priceTotal : Double = 0.0
     
     func addBook(book: Book) {
+        print("Adding book: \(book.title)")
         books.append(book)
         bookCount = books.count
+        print("New count: \(bookCount)")
     }
     
     func removeBook(book: Book) {
