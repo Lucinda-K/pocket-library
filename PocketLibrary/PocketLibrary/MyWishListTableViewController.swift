@@ -10,7 +10,7 @@ import UIKit
 
 class MyWishListTableViewController: UITableViewController {
 
-    var myWishList = Collection()
+    var myWishList = Collection(name: "myWishList", books: [], bookCount: 0)
 
     
     
@@ -39,7 +39,7 @@ class MyWishListTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return myWishList.bookCount
+        return myWishList!.bookCount
     }
 
     
@@ -49,7 +49,7 @@ class MyWishListTableViewController: UITableViewController {
         // Configure the cell...
         var book : Book
         
-        book = myWishList.books[indexPath.row]
+        book = myWishList!.books[indexPath.row]
         
         cell.titleLabel.text = book.title
         cell.authorLabel.text = book.authorStr

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3C4F080B7D67662E9FA53C42A584E422C8B67DA7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3C4F080B7D67662E9FA53C42A584E422C8B67DA7" : 0,
+    "2E569C27B2ABF8A4478B3463B0177C2EA03CA2B5" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "80DC0547-7629-46E9-9E59-A2FF27DF4881",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3C4F080B7D67662E9FA53C42A584E422C8B67DA7" : "pocket-library\/",
+    "2E569C27B2ABF8A4478B3463B0177C2EA03CA2B5" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "PocketLibrary",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "PocketLibrary\/PocketLibrary.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/NDMobileApps\/assignment1-Lucinda-K.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2E569C27B2ABF8A4478B3463B0177C2EA03CA2B5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Lucinda-K\/pocket-library.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3C4F080B7D67662E9FA53C42A584E422C8B67DA7"
+    }
+  ]
+}

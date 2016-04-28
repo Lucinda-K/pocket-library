@@ -61,7 +61,7 @@ class Collection: NSObject, NSCoding {
         
         let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
         let books = aDecoder.decodeObjectForKey(PropertyKey.booksKey) as! [Book]
-        let bookCount = aDecoder.decodeObjectForKey(PropertyKey.booksKey) as! Int
+        let bookCount = aDecoder.decodeObjectForKey(PropertyKey.bookCountKey) as! Int
         
         // Must call designated initializer
         

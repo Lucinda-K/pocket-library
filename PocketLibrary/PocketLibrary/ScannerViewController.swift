@@ -131,7 +131,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                         for book in books {
                             
                             let book = Book(data: book)
-                            self.collection.append(book)
+                            self.collection.append(book!)
                             /*
                             self.books.append(book)
                             let result_book = book

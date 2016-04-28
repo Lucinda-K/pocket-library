@@ -26,14 +26,16 @@ class MyLibraryTableViewController: UITableViewController {
         super.viewDidLoad()
 
         print("View loaded")
-        myLibrary.addBook(book1)
-        myLibrary.addBook(book2)
+        myLibrary!.addBook(book1!)
+        myLibrary!.addBook(book2!)
         
-        for book in myLibrary.books {
+        for book in myLibrary!.books {
             print("Printing book...")
             print(book.title)
         }
         
+        saveLibrary()
+        loadLibrary()
         tableView.reloadData()
         
         // Uncomment the following line to preserve selection between presentations
@@ -46,6 +48,13 @@ class MyLibraryTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
+        
+        
+        
+        saveLibrary()
+        
+        
+        loadLibrary()
         tableView.reloadData()
     }
     
@@ -64,7 +73,7 @@ class MyLibraryTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return myLibrary.bookCount
+        return myLibrary!.bookCount
     }
 
     
@@ -74,7 +83,7 @@ class MyLibraryTableViewController: UITableViewController {
         // Configure the cell...
         var book : Book
         
-        book = myLibrary.books[indexPath.row]
+        book = myLibrary!.books[indexPath.row]
 
         
         cell.titleLabel!.text = book.title
@@ -119,8 +128,20 @@ class MyLibraryTableViewController: UITableViewController {
     }
     */
 
+    // MARK: NSCoding
     
-    // MARK: - Navigation
+    func saveLibrary() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(myLibrary!, toFile: Collection.ArchiveURL.path!)
+        if !isSuccessfulSave {
+            print("Failed to save library...")
+        }
+    }
+    
+    func loadLibrary() -> Collection? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Collection.ArchiveURL.path!) as? Collection
+    }
+    
+    // MARK: Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -136,9 +157,6 @@ class MyLibraryTableViewController: UITableViewController {
             }
 
         }
-
-        
-        
     }
     
 

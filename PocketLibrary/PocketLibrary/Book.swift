@@ -167,8 +167,11 @@ class Book: NSObject, NSCoding {
         
     }
     
-    init(data: JSON) {
+    init?(data: JSON) {
         print("Adding Book object")
+        
+        super.init()
+        
         self.parseJSON(data)
         print("Name: \(self.title)")
     }
@@ -176,11 +179,14 @@ class Book: NSObject, NSCoding {
     init?(title: String, authors: [String]) {
         
         self.title = title
+        self.authors = authors
+
+
+        super.init()
+        
         for newAuthor in authors {
             self.addAuthor(newAuthor)
         }
-
-        super.init()
         
         // Initialization should fail if there is no name
         if title.isEmpty {
