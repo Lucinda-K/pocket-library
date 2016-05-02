@@ -63,8 +63,22 @@ class Book: NSManagedObject {
             addAuthor(json["volumeInfo"]["authors"][index].stringValue)
         }
  
-        self.publisher = String(json["volumeInfo"]["publisher"])
-        self.publishedDateStr = String(json["volumeInfo"]["publishedDate"])
+        var publisherStr = String(json["volumeInfo"]["publisher"])
+        var publishers = [Publisher]()
+        
+        let fetchRequest = NSFetchRequest(entityName: "Publisher")
+        //let predicate = NSPredicate(format: "publisherName == %ld", )
+        //Query for Publishers with exact name
+        let predicate = NSPredicate(format: "publisherName == %@", publisherStr)
+        
+        fetchRequest.predicate = predicate
+        
+        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest) as? [Publisher] {
+            publishers = fetchResults
+        }
+        
+        //self.publisher = String(json["volumeInfo"]["publisher"])
+        //self.publishedDateStr = String(json["volumeInfo"]["publishedDate"])
         //self.description = String(json["volumeInfo"]["description"])
         self.pageCount = Int(String(json["volumeInfo"]["pageCount"]))
         

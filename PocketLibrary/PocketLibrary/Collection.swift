@@ -34,17 +34,17 @@ class Collection: NSManagedObject {
         collection.addObject(newBook)
         
         //books.append(book as Book)
-        var currentCount = self.bookCount
+        var currentCount = self.bookCount as! Int
         currentCount+=1
         self.bookCount?.setValue(currentCount, forKey: "bookCount")
         
-        bookCount = books.count
+        //bookCount = books.count
         print("New count: \(bookCount)")
     }
     
     func removeBook(book: Book) {
         //isbn = book
-        bookCount = books.count
+        //bookCount = books.count
     }
     
     func searchForBook(category: String, query: String) {
@@ -67,7 +67,7 @@ class Collection: NSManagedObject {
     
     // MARK: NSCoding
     
-    
+    /*
     //https://developer.apple.com/library/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Lesson10.html
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
@@ -86,7 +86,8 @@ class Collection: NSManagedObject {
         self.init(name: name, books: books, bookCount: bookCount)
         
     }
-    
+    */
+    /*
     init?(name: String, books: [Book], bookCount: Int) {
         
         // Initialize stored properties
@@ -101,5 +102,6 @@ class Collection: NSManagedObject {
             return nil
         }
     }
+    */
     
 }

@@ -13,8 +13,10 @@ class AddNewBookTableViewController: UITableViewController {
 
     var book : Book?
     //var myCollection : Collection?
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
-    var myCollection = [NSManagedObject]()
+    
+    var myCollection : [Book] = []
     
     @IBOutlet weak var titleCell: UITableViewCell!
     @IBOutlet weak var authorsCell: UITableViewCell!
@@ -38,12 +40,15 @@ class AddNewBookTableViewController: UITableViewController {
         super.viewDidLoad()
         
         print("View loaded")
+        
+        let context = appDelegate.managedObjectContext
+        
 
         if let newBook = book {
             titleLabel!.text = newBook.title
             authorsLabel?.text = newBook.authorStr
-            publisherLabel?.text = newBook.publisher
-            publishDatelabel?.text = newBook.publishedDateStr
+            //publisherLabel?.text = newBook.publisher
+            //publishDatelabel?.text = newBook.publishedDateStr
             pageCountLabel?.text = String(newBook.pageCount!)
         }
         //authorsLabel?.text = book!.authorStr
