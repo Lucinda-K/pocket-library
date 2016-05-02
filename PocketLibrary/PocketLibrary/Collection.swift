@@ -7,19 +7,37 @@
 //
 
 import Foundation
+import CoreData
 
-
-class Collection: NSObject, NSCoding {
+class Collection: NSManagedObject {
     
+    /*
     var name : String
     var books : [Book] = []   // list of Book objects
     var bookCount : Int = 0
     var pageTotal : Int = 0
     var priceTotal : Double = 0.0
+    */
     
     func addBook(book: Book) {
         print("Adding book: \(book.title)")
-        books.append(book)
+        
+        
+        //self.bookCollection.append(book as Book)
+        
+        let entityDescription = NSEntityDescription.entityForName("Book", inManagedObjectContext: self.managedObjectContext!)
+        let newBook = NSManagedObject(entity: entityDescription!, insertIntoManagedObjectContext: self.managedObjectContext)
+        
+        newBook.setValue(book.title, forKey: "title")
+        
+        var collection = self.mutableSetValueForKey("bookCollection")
+        collection.addObject(newBook)
+        
+        //books.append(book as Book)
+        var currentCount = self.bookCount
+        currentCount+=1
+        self.bookCount?.setValue(currentCount, forKey: "bookCount")
+        
         bookCount = books.count
         print("New count: \(bookCount)")
     }

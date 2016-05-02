@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		683E0D151CD6E3A2009C29C3 /* PocketLibrary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 683E0D131CD6E3A2009C29C3 /* PocketLibrary.xcdatamodeld */; };
+		683E0D1E1CD7127F009C29C3 /* Publisher+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E0D161CD7127F009C29C3 /* Publisher+CoreDataProperties.swift */; };
+		683E0D1F1CD7127F009C29C3 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E0D171CD7127F009C29C3 /* Publisher.swift */; };
+		683E0D201CD7127F009C29C3 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E0D181CD7127F009C29C3 /* Category+CoreDataProperties.swift */; };
+		683E0D211CD7127F009C29C3 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E0D191CD7127F009C29C3 /* Category.swift */; };
+		683E0D221CD7127F009C29C3 /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E0D1A1CD7127F009C29C3 /* Book+CoreDataProperties.swift */; };
+		683E0D231CD7127F009C29C3 /* Author+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E0D1B1CD7127F009C29C3 /* Author+CoreDataProperties.swift */; };
+		683E0D241CD7127F009C29C3 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E0D1C1CD7127F009C29C3 /* Author.swift */; };
+		683E0D251CD7127F009C29C3 /* Collection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E0D1D1CD7127F009C29C3 /* Collection+CoreDataProperties.swift */; };
 		687C54121CC5AC06008D0546 /* MyLibraryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687C54111CC5AC06008D0546 /* MyLibraryTableViewController.swift */; };
 		68A1FFA11CC6C45E00DFC848 /* MyLibraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A1FFA01CC6C45E00DFC848 /* MyLibraryTableViewCell.swift */; };
 		68F263AE1CB3085500C80ACB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F263AD1CB3085500C80ACB /* AppDelegate.swift */; };
@@ -51,6 +59,14 @@
 
 /* Begin PBXFileReference section */
 		683E0D141CD6E3A2009C29C3 /* PocketLibrary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PocketLibrary.xcdatamodel; sourceTree = "<group>"; };
+		683E0D161CD7127F009C29C3 /* Publisher+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		683E0D171CD7127F009C29C3 /* Publisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
+		683E0D181CD7127F009C29C3 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		683E0D191CD7127F009C29C3 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		683E0D1A1CD7127F009C29C3 /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		683E0D1B1CD7127F009C29C3 /* Author+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		683E0D1C1CD7127F009C29C3 /* Author.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
+		683E0D1D1CD7127F009C29C3 /* Collection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		687C54111CC5AC06008D0546 /* MyLibraryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLibraryTableViewController.swift; sourceTree = "<group>"; };
 		68A1FFA01CC6C45E00DFC848 /* MyLibraryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLibraryTableViewCell.swift; sourceTree = "<group>"; };
 		68F263AA1CB3085500C80ACB /* PocketLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +125,16 @@
 		689BAD641CD1078F002E027E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				683E0D161CD7127F009C29C3 /* Publisher+CoreDataProperties.swift */,
+				683E0D171CD7127F009C29C3 /* Publisher.swift */,
+				683E0D181CD7127F009C29C3 /* Category+CoreDataProperties.swift */,
+				683E0D191CD7127F009C29C3 /* Category.swift */,
+				683E0D1A1CD7127F009C29C3 /* Book+CoreDataProperties.swift */,
+				843513921CBEF23700AA9EF9 /* Book.swift */,
+				683E0D1B1CD7127F009C29C3 /* Author+CoreDataProperties.swift */,
+				683E0D1C1CD7127F009C29C3 /* Author.swift */,
+				683E0D1D1CD7127F009C29C3 /* Collection+CoreDataProperties.swift */,
+				8435139C1CBEFA9400AA9EF9 /* Collection.swift */,
 				683E0D131CD6E3A2009C29C3 /* PocketLibrary.xcdatamodeld */,
 			);
 			name = Model;
@@ -160,8 +186,6 @@
 				843513981CBEF25600AA9EF9 /* GoogleBooksService.swift */,
 				843513961CBEF24600AA9EF9 /* SwiftyJSON.swift */,
 				843513941CBEF23E00AA9EF9 /* MapViewController.swift */,
-				843513921CBEF23700AA9EF9 /* Book.swift */,
-				8435139C1CBEFA9400AA9EF9 /* Collection.swift */,
 				843513901CBEF23000AA9EF9 /* ApiKeys.swift */,
 				8435138E1CBEF22700AA9EF9 /* AddNewBookViewController.swift */,
 				8435138C1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift */,
@@ -334,19 +358,27 @@
 				68A1FFA11CC6C45E00DFC848 /* MyLibraryTableViewCell.swift in Sources */,
 				8435139D1CBEFA9400AA9EF9 /* Collection.swift in Sources */,
 				843513931CBEF23700AA9EF9 /* Book.swift in Sources */,
+				683E0D251CD7127F009C29C3 /* Collection+CoreDataProperties.swift in Sources */,
 				843513991CBEF25600AA9EF9 /* GoogleBooksService.swift in Sources */,
 				843513911CBEF23000AA9EF9 /* ApiKeys.swift in Sources */,
 				68F263B01CB3085500C80ACB /* ScannerViewController.swift in Sources */,
+				683E0D201CD7127F009C29C3 /* Category+CoreDataProperties.swift in Sources */,
 				8435138F1CBEF22700AA9EF9 /* AddNewBookViewController.swift in Sources */,
+				683E0D1E1CD7127F009C29C3 /* Publisher+CoreDataProperties.swift in Sources */,
 				683E0D151CD6E3A2009C29C3 /* PocketLibrary.xcdatamodeld in Sources */,
 				84C68C141CC7081E0067257C /* MyWishListTableViewCell.swift in Sources */,
+				683E0D221CD7127F009C29C3 /* Book+CoreDataProperties.swift in Sources */,
 				843513971CBEF24600AA9EF9 /* SwiftyJSON.swift in Sources */,
 				84C68C0E1CC6FF060067257C /* MyReadingTableViewController.swift in Sources */,
 				84C68C121CC7080C0067257C /* MyReadingTableViewCell.swift in Sources */,
 				687C54121CC5AC06008D0546 /* MyLibraryTableViewController.swift in Sources */,
 				8435138D1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift in Sources */,
+				683E0D241CD7127F009C29C3 /* Author.swift in Sources */,
+				683E0D1F1CD7127F009C29C3 /* Publisher.swift in Sources */,
 				84C68C101CC6FF370067257C /* MyWishListTableViewController.swift in Sources */,
 				843513951CBEF23E00AA9EF9 /* MapViewController.swift in Sources */,
+				683E0D211CD7127F009C29C3 /* Category.swift in Sources */,
+				683E0D231CD7127F009C29C3 /* Author+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

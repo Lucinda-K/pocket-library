@@ -30,7 +30,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     /// The UI layer to display the feed from the input source, in our case, the camera.
     var captureLayer:AVCaptureVideoPreviewLayer?
     //var bookToAdd : Book?
-    var newBook : Book()
+    var newBook : Book?
     var bookToAdd = NSManagedObject()
     var books: [JSON] = []
     let api_key = valueForAPIKey(keyname: "API_KEY")
@@ -55,7 +55,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var dataType = ""
 
     // For passing the collection
-    var myCollection : Collection?
+    //var myCollection : Collection?
+    
+    var myCollection = [NSManagedObject]()
     
     //MARK: View lifecycle
     override func viewDidLoad() {
@@ -233,7 +235,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             }
             if let addNewBookTableViewController = segue.destinationViewController as? AddNewBookTableViewController {
                 let book = self.bookToAdd
-                addNewBookTableViewController.book = book
+                //addNewBookTableViewController.book = book
                 addNewBookTableViewController.myCollection = self.myCollection
             }
             

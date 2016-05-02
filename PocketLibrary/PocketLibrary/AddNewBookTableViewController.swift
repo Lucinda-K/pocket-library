@@ -12,7 +12,9 @@ import CoreData
 class AddNewBookTableViewController: UITableViewController {
 
     var book : Book?
-    var myCollection : Collection?
+    //var myCollection : Collection?
+    
+    var myCollection = [NSManagedObject]()
     
     @IBOutlet weak var titleCell: UITableViewCell!
     @IBOutlet weak var authorsCell: UITableViewCell!
@@ -28,7 +30,7 @@ class AddNewBookTableViewController: UITableViewController {
     @IBAction func saveBook(sender: AnyObject) {
     
         print("You clicked Save")
-        myCollection?.addBook(book!)
+        //myCollection?.addBook(book!)
     self.performSegueWithIdentifier("unwindToLibrary", sender: self)
     }
     
@@ -127,7 +129,7 @@ class AddNewBookTableViewController: UITableViewController {
             
             if let libraryTableViewController = segue.destinationViewController as? MyLibraryTableViewController {
                 let collection = self.myCollection
-                libraryTableViewController.myLibrary = collection!
+                libraryTableViewController.myLibrary = collection
             }
             
         }

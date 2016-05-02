@@ -8,10 +8,12 @@
 
 import Foundation
 import UIKit        // for image
+import CoreData
 
-class Book: NSObject, NSCoding {
+class Book: NSManagedObject {
     
     // Book information
+    /*
     var id : String = ""
     var isbn: String = ""
     var title : String = ""
@@ -34,6 +36,8 @@ class Book: NSObject, NSCoding {
     var list : [String] = ["1","2","3"]
     
     var notes : String?
+    */
+    
     
     func parseJSON(json: JSON) {
         

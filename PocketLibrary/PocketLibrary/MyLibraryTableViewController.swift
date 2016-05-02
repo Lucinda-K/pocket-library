@@ -14,7 +14,11 @@ class MyLibraryTableViewController: UITableViewController {
     
     //var myLibrary = Collection(name: "myLibrary", books: [], bookCount: 0)
     
-    var myLibrary = [NSManagedObject]()   // Core Data - [Book]
+    //var myLibrary = [NSManagedObject]()   // Core Data - [Book]
+
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    var myLibrary : [Book] = []
     
     
     //var book1 = Book(title: "Harry Potter and the Prisoner of Azkaban", authors: ["J.K. Rowling"])
@@ -25,11 +29,32 @@ class MyLibraryTableViewController: UITableViewController {
     
     @IBAction func unwindToLibraryViewControll(segue: UIStoryboardSegue) { }
     
+    func fetchData() {
+        let context = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: "Collection")
+        
+        do {
+            myLibrary = try context.executeFetchRequest(fetchRequest) as! [Book]
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+        } catch {
+            print("Error: \(error)")
+        }
+        
+        
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         print("View loaded")
+        
+        let context = appDelegate.managedObjectContext
+        
+        self.fetchData()
+        
         //myLibrary!.addBook(book1!)
         //myLibrary!.addBook(book2!)
         /*
@@ -43,8 +68,13 @@ class MyLibraryTableViewController: UITableViewController {
             print(book.valueForKey("title"))
         }
         
-        saveLibrary()
-        loadLibrary()
+        
+        
+        
+        
+        
+        //saveLibrary()
+        //loadLibrary()
         tableView.reloadData()
         
         // Uncomment the following line to preserve selection between presentations
@@ -60,10 +90,10 @@ class MyLibraryTableViewController: UITableViewController {
         
         
         
-        saveLibrary()
+        //saveLibrary()
         
         
-        loadLibrary()
+       // loadLibrary()
         tableView.reloadData()
     }
     
@@ -167,6 +197,7 @@ class MyLibraryTableViewController: UITableViewController {
             if let scannerViewController = segue.destinationViewController as? ScannerViewController {
                 let collection = self.myLibrary
                 scannerViewController.myCollection = collection
+                
             }
 
         }

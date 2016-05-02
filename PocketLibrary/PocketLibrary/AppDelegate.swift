@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let libraryCollection = NSManagedObject(entity: entityDescription!, insertIntoManagedObjectContext: self.managedObjectContext)
         
         // Configure new Collections
-        libraryCollection.setValue("myLibrary", forKey: "name")
+        libraryCollection.setValue("myLibrary", forKey: "collectionName")
         
         // Save
         do {
@@ -34,7 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        return true
+
+               return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
