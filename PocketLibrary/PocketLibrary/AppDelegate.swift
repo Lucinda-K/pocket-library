@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        /*
         // Create default Collection NSManagedObjects - library, wish list, reading
         // http://code.tutsplus.com/tutorials/core-data-and-swift-managed-objects-and-fetch-requests--cms-25068
         let entityDescription = NSEntityDescription.entityForName("Collection", inManagedObjectContext: self.managedObjectContext)
@@ -33,9 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(error)
         }
         
-        
+        */
 
-               return true
+        return true
     }
 
     func applicationWillResignActive(application: UIApplication) {

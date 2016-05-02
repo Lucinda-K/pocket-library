@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MyLibraryTableViewController: UITableViewController {
+class MyLibraryTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     
     //var myLibrary = Collection(name: "myLibrary", books: [], bookCount: 0)
@@ -17,6 +17,7 @@ class MyLibraryTableViewController: UITableViewController {
     //var myLibrary = [NSManagedObject]()   // Core Data - [Book]
 
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     //var myLibrary : [Book] = []
     
@@ -31,7 +32,11 @@ class MyLibraryTableViewController: UITableViewController {
     
     @IBAction func unwindToLibraryViewControll(segue: UIStoryboardSegue) { }
     
+    var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController()
+    
+    
     func fetchData() {
+        print("Fetching data")
         let context = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: "Collection")
         
@@ -42,6 +47,7 @@ class MyLibraryTableViewController: UITableViewController {
         do {
             
             if let fetchResults = try context.executeFetchRequest(fetchRequest) as? [Collection] {
+                print("retchResults.count: \(fetchResults.count)")
                 if fetchResults.count == 0 {
                         let collection = NSEntityDescription.entityForName("Collection", inManagedObjectContext: context)
                         let newCollection = NSManagedObject(entity: collection!, insertIntoManagedObjectContext: context)
@@ -76,12 +82,14 @@ class MyLibraryTableViewController: UITableViewController {
 
         print("View loaded")
         
-        let context = appDelegate.managedObjectContext
+        super.viewDidLoad()
+        fetchedResultsController = getFetchedResultController()
+        //fetchedResultsController.delegate = self
+        do {
+            try fetchedResultsController.performFetch()
+        } catch _ {
+        }
         
-        //myLibrary = myCollection!.bookCollection as! [Book]
-        //myCollection!.setValue("myLibrary", forKey: "name")
-        
-        self.fetchData()
         
         //myLibrary!.addBook(book1!)
         //myLibrary!.addBook(book2!)
@@ -126,7 +134,52 @@ class MyLibraryTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    
+    func getFetchedResultController() -> NSFetchedResultsController {
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        return fetchedResultsController
+    }
+    
+    func taskFetchRequest() -> NSFetchRequest {
+        
+        
+        
+        let context = appDelegate.managedObjectContext
+        let fetchRequest1 = NSFetchRequest(entityName: "Collection")
+        
+        let libraryName = "myLibrary"
+        let predicate = NSPredicate(format: "collectionName == %@", libraryName)
+        fetchRequest1.predicate = predicate
+        let sortDescriptor = NSSortDescriptor(key: "collectionName", ascending: true)
+        fetchRequest1.sortDescriptors = [sortDescriptor]
+        
+        do {
+            
+            if let fetchResults = try context.executeFetchRequest(fetchRequest1) as? [Collection] {
+                if fetchResults.count == 0 {
+                    let collection = NSEntityDescription.entityForName("Collection", inManagedObjectContext: context)
+                    let newCollection = NSManagedObject(entity: collection!, insertIntoManagedObjectContext: context)
+                    newCollection.setValue(libraryName, forKey: "collectionName")
+                    myCollection = newCollection as? Collection
+                }
+                else {
+                    myCollection = fetchResults[0]
+                }
+                print(myCollection)
+            }
+        } catch {
+            print("Error: \(error)")
+        }
 
+        
+        
+        
+        //let fetchRequest = NSFetchRequest(entityName: "Collection")
+
+        return fetchRequest1
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -136,13 +189,16 @@ class MyLibraryTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        let numberOfSections = fetchedResultsController.sections?.count
+        print("Section: \(numberOfSections!)")
+        return numberOfSections!
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         //return myLibrary.bookCount
-        return myLibrary.count
+        let numberOfRowsInSection = fetchedResultsController.sections?[section].numberOfObjects
+        return numberOfRowsInSection!
     }
 
     
@@ -154,16 +210,27 @@ class MyLibraryTableViewController: UITableViewController {
         
         //let book = myLibrary[indexPath.row]
         
-        var myBooks = [NSManagedObject]()
-        myBooks = (myCollection?.bookCollection)! as [Book]
+        //var myBooks = [NSManagedObject]()
+        //myBooks = (myCollection?.bookCollection)! as [Book]
         
-        myBooks = (myCollection?.bookCollection)!
+        //myBooks = (myCollection?.bookCollection)!
         
-        let book = myBooks[indexPath.row]
+        //let book = myBooks[indexPath.row]
+        
+        let collection = fetchedResultsController.objectAtIndexPath(indexPath) as! Collection
+        //let bookCollection = collection.bookCollection as [Book]
+        
+        
+        //cell.titleLabel!.text = book.title
+        
+        
+        //var myBooks = myCollection?.mutableSetValueForKey("books")
+        
+        //let book = myBooks[indexPath.row]
+        
         
         //book = myLibrary!.books[indexPath.row]
-
-        cell.titleLabel!.text = book.valueForKey("title") as? String
+        //cell.titleLabel!.text = book.valueForKey("title") as? String
         
         //cell.titleLabel!.text = book.title
         //cell.authorLabel!.text = book.authorStr
