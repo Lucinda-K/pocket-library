@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class MyLibraryTableViewController: UITableViewController {
 
     
-    var myLibrary = Collection(name: "myLibrary", books: [], bookCount: 0)
+    //var myLibrary = Collection(name: "myLibrary", books: [], bookCount: 0)
     
-    var book1 = Book(title: "Harry Potter and the Prisoner of Azkaban", authors: ["J.K. Rowling"])
-    var book2 = Book(title: "Story of a Soul", authors: ["Therese of Lisieux"])
+    var myLibrary = [NSManagedObject]()   // Core Data - [Book]
+    
+    
+    //var book1 = Book(title: "Harry Potter and the Prisoner of Azkaban", authors: ["J.K. Rowling"])
+    //var book2 = Book(title: "Story of a Soul", authors: ["Therese of Lisieux"])
     
     // Unwind segue from cancel button
     @IBAction func cancelToLibraryViewController(segue: UIStoryboardSegue) {}
@@ -26,12 +30,17 @@ class MyLibraryTableViewController: UITableViewController {
         super.viewDidLoad()
 
         print("View loaded")
-        myLibrary!.addBook(book1!)
-        myLibrary!.addBook(book2!)
-        
-        for book in myLibrary!.books {
+        //myLibrary!.addBook(book1!)
+        //myLibrary!.addBook(book2!)
+        /*
+        for book in myLibrary.books {
             print("Printing book...")
             print(book.title)
+        }
+        */
+        for book in myLibrary{
+            print("Printing book...")
+            print(book.valueForKey("title"))
         }
         
         saveLibrary()
@@ -73,7 +82,8 @@ class MyLibraryTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return myLibrary!.bookCount
+        //return myLibrary.bookCount
+        return myLibrary.count
     }
 
     
@@ -81,13 +91,16 @@ class MyLibraryTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("LibraryBookCell", forIndexPath: indexPath) as! MyLibraryTableViewCell
 
         // Configure the cell...
-        var book : Book
+        //var book : Book
         
-        book = myLibrary!.books[indexPath.row]
+        let book = myLibrary[indexPath.row]
+        
+        //book = myLibrary!.books[indexPath.row]
 
+        cell.titleLabel!.text = book.valueForKey("title") as? String
         
-        cell.titleLabel!.text = book.title
-        cell.authorLabel!.text = book.authorStr
+        //cell.titleLabel!.text = book.title
+        //cell.authorLabel!.text = book.authorStr
         
         return cell
     }
@@ -127,7 +140,7 @@ class MyLibraryTableViewController: UITableViewController {
         return true
     }
     */
-
+    /*
     // MARK: NSCoding
     
     func saveLibrary() {
@@ -140,7 +153,7 @@ class MyLibraryTableViewController: UITableViewController {
     func loadLibrary() -> Collection? {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(Collection.ArchiveURL.path!) as? Collection
     }
-    
+    */
     // MARK: Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

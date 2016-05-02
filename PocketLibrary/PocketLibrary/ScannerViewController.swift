@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import CoreData
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
@@ -28,11 +29,19 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureDevice:AVCaptureDevice?
     /// The UI layer to display the feed from the input source, in our case, the camera.
     var captureLayer:AVCaptureVideoPreviewLayer?
-    var bookToAdd : Book?
+    //var bookToAdd : Book?
+    var newBook : Book()
+    var bookToAdd = NSManagedObject()
     var books: [JSON] = []
     let api_key = valueForAPIKey(keyname: "API_KEY")
 
-    var collection : [Book] = []
+    var newBooks = [Book]()
+    
+    //var collection : [Book] = []
+    
+    var collection = [NSManagedObject]()
+    
+    
     var googlebooks: GoogleBooksService?
 
     // These won't be needed once a Book object exists
@@ -131,7 +140,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                         for book in books {
                             
                             let book = Book(data: book)
-                            self.collection.append(book!)
+                            
+                            //self.collection.append(book!)
+                            self.newBooks.append(book!)
+                            
                             /*
                             self.books.append(book)
                             let result_book = book
@@ -161,15 +173,18 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             }
         }
         var count = 0
-        for book in self.collection {
+        //for book in self.collection {
+        for book in self.newBooks {
             print("Book found")
             count+=1
             print("Book: \(count)")
             print("Title: \(book.title)")
-            print("Publisher: \(String(book.publisher!))")
-            print("Publish date: \(String(book.publishedDateStr!))")
-            print("Pages: \(book.pageCount)")
-            self.bookToAdd = book
+            //print("Title: \(book.valueForKey("title"))")
+            //print("Publisher: \(String(book.publisher!))")
+            //print("Publish date: \(String(book.publishedDateStr!))")
+            //print("Pages: \(book.pageCount)")
+            //self.bookToAdd = book
+            self.newBook = book
         }
         //print("End of captureOutput function")
         if count > 0 {
@@ -214,7 +229,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             
             if let addNewBookViewController = segue.destinationViewController as? AddNewBookViewController {
                 let book = self.bookToAdd
-                addNewBookViewController.book = book
+                //addNewBookViewController.book = book
             }
             if let addNewBookTableViewController = segue.destinationViewController as? AddNewBookTableViewController {
                 let book = self.bookToAdd
