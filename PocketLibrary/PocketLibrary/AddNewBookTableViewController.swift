@@ -16,7 +16,8 @@ class AddNewBookTableViewController: UITableViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     
-    var myCollection : [Book] = []
+    //var myCollection : [Book] = []
+    var myCollection : Collection?
     
     @IBOutlet weak var titleCell: UITableViewCell!
     @IBOutlet weak var authorsCell: UITableViewCell!
@@ -134,7 +135,7 @@ class AddNewBookTableViewController: UITableViewController {
             
             if let libraryTableViewController = segue.destinationViewController as? MyLibraryTableViewController {
                 let collection = self.myCollection
-                libraryTableViewController.myLibrary = collection
+                libraryTableViewController.myCollection = collection
             }
             
         }

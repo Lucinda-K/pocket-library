@@ -20,7 +20,7 @@ class MyLibraryTableViewController: UITableViewController {
     
     //var myLibrary : [Book] = []
     
-    var myCollection = Collection()
+    var myCollection : Collection?
     var myLibrary = [Book]()
     
     //var book1 = Book(title: "Harry Potter and the Prisoner of Azkaban", authors: ["J.K. Rowling"])
@@ -35,6 +35,28 @@ class MyLibraryTableViewController: UITableViewController {
         let context = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: "Collection")
         
+        let libraryName = "myLibrary"
+        let predicate = NSPredicate(format: "collectionName == %@", libraryName)
+        fetchRequest.predicate = predicate
+        
+        do {
+            
+            if let fetchResults = try context.executeFetchRequest(fetchRequest) as? [Collection] {
+                if fetchResults.count == 0 {
+                        let collection = NSEntityDescription.entityForName("Collection", inManagedObjectContext: context)
+                        let newCollection = NSManagedObject(entity: collection!, insertIntoManagedObjectContext: context)
+                        newCollection.setValue(libraryName, forKey: "collectionName")
+                }
+                else {
+                    myCollection = fetchResults[0]
+                }
+
+            }
+        } catch {
+            print("Error: \(error)")
+        }
+
+            /*
         do {
             //myLibrary = try context.executeFetchRequest(fetchRequest) as! [Book]
             myLibrary = try context.executeFetchRequest(fetchRequest) as! [Book]
@@ -44,7 +66,7 @@ class MyLibraryTableViewController: UITableViewController {
         } catch {
             print("Error: \(error)")
         }
-        
+        */
         
     }
     
@@ -56,8 +78,8 @@ class MyLibraryTableViewController: UITableViewController {
         
         let context = appDelegate.managedObjectContext
         
-        myLibrary = myCollection.bookCollection as! [Book]
-        myCollection.setValue("libraryCollection", forKey: "name")
+        //myLibrary = myCollection!.bookCollection as! [Book]
+        //myCollection!.setValue("myLibrary", forKey: "name")
         
         self.fetchData()
         
@@ -69,11 +91,12 @@ class MyLibraryTableViewController: UITableViewController {
             print(book.title)
         }
         */
+        /*
         for book in myLibrary{
             print("Printing book...")
             print(book.valueForKey("title"))
         }
-        
+        */
         
         
         
@@ -129,7 +152,14 @@ class MyLibraryTableViewController: UITableViewController {
         // Configure the cell...
         //var book : Book
         
-        let book = myLibrary[indexPath.row]
+        //let book = myLibrary[indexPath.row]
+        
+        var myBooks = [NSManagedObject]()
+        myBooks = (myCollection?.bookCollection)! as [Book]
+        
+        myBooks = (myCollection?.bookCollection)!
+        
+        let book = myBooks[indexPath.row]
         
         //book = myLibrary!.books[indexPath.row]
 

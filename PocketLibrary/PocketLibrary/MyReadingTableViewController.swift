@@ -10,7 +10,7 @@ import UIKit
 
 class MyReadingTableViewController: UITableViewController {
     
-    var myReading = Collection(name: "myReading", books: [], bookCount: 0)
+    //var myReading = Collection(name: "myReading", books: [], bookCount: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,8 @@ class MyReadingTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return myReading!.bookCount
+        //return myReading!.bookCount
+        return 1
     }
 
     
@@ -49,10 +50,10 @@ class MyReadingTableViewController: UITableViewController {
         // Configure the cell...
         var book : Book
         
-        book = myReading!.books[indexPath.row]
+        //book = myReading!.books[indexPath.row]
         
-        cell.titleLabel.text = book.title
-        cell.authorLabel.text = book.authorStr
+        //cell.titleLabel.text = book.title
+        //cell.authorLabel.text = book.authorStr
         
         
         return cell

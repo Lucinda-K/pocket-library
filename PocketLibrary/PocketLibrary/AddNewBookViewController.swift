@@ -22,6 +22,9 @@ class AddNewBookViewController: UIViewController {
         super.viewDidLoad()
         
         titleLabel.text = book.title
+        
+        
+        /*
         authorLabel.text = book.authors[0]
         if let publisher = book.publisher {
             publisherLabel.text = publisher
@@ -30,7 +33,7 @@ class AddNewBookViewController: UIViewController {
             publishDateLabel.text = publishDate
         }
         
-        
+        */
 
         // Do any additional setup after loading the view.
     }

@@ -206,6 +206,7 @@ class Book: NSManagedObject {
         
     }
     */
+    /*
     init(data: JSON) {
         print("Adding Book object")
         
@@ -233,6 +234,7 @@ class Book: NSManagedObject {
         }
         */
     }
+*/
     
     
     

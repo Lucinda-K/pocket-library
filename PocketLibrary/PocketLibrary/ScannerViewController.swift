@@ -34,16 +34,16 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureLayer:AVCaptureVideoPreviewLayer?
     //var bookToAdd : Book?
     var newBook : Book?
-    var bookToAdd = NSManagedObject()
-    var books: [JSON] = []
+    //var bookToAdd = NSManagedObject()
+    var json_books: [JSON] = []
     let api_key = valueForAPIKey(keyname: "API_KEY")
 
     var newBooks = [Book]()
     
     //var collection : [Book] = []
     
-    var collection = [NSManagedObject]()
-    
+    //var collection = [NSManagedObject]()
+    var collection : Collection?
     
     var googlebooks: GoogleBooksService?
 
@@ -146,12 +146,15 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 
                 self.googlebooks!.queryByISBN(decodedData.stringValue) {
                     (books) in
-                        self.books = books
-                        for book in books {
+                        self.json_books = books
+                        for json_book in books {
                             
                             //let book = Book(data: book)
                             
                             let book = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: self.appDelegate.managedObjectContext) as! Book
+                            
+                            book.title = String(json_book["volumeInfo"]["title"])
+                            book.subtitle = String(json_book["volumeInfo"]["subtitle"])
                             
                             
                             //self.collection.append(book!)
@@ -241,12 +244,13 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         if segue.identifier == "ScannerToNewBook" {
             
             if let addNewBookViewController = segue.destinationViewController as? AddNewBookViewController {
-                let book = self.bookToAdd
+                //let book = self.bookToAdd
                 //addNewBookViewController.book = book
             }
             if let addNewBookTableViewController = segue.destinationViewController as? AddNewBookTableViewController {
-                let book = self.bookToAdd
+                //let book = self.bookToAdd
                 //addNewBookTableViewController.book = book
+                addNewBookTableViewController.book = self.newBook
                 addNewBookTableViewController.myCollection = self.myCollection
             }
             

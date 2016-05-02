@@ -11,7 +11,7 @@ import Foundation
 class GoogleBooksService {
     
     var API_KEY : String
-    var books : [JSON] = []
+    var json_books : [JSON] = []
     var titleArray : [String] = []
     
     var resultJSON : String = ""
@@ -28,7 +28,7 @@ class GoogleBooksService {
         
         for(_, book) in json["items"] {
             print("Adding a book")
-            books.append(book)
+            json_books.append(book)
         }
 
         
@@ -62,7 +62,7 @@ class GoogleBooksService {
                     
                     self.parseJSONResponse(data!)
                     
-                    callback(self.books)
+                    callback(self.json_books)
                 })
             }
         }
