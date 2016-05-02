@@ -22,6 +22,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     @IBAction func cancelToScannerViewController(segue: UIStoryboardSegue) { }
     
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    
     //MARK: Properties
     /// Runs the capture session.
     let captureSession = AVCaptureSession()
@@ -57,12 +60,17 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     // For passing the collection
     //var myCollection : Collection?
     
-    var myCollection = [NSManagedObject]()
+    //var myCollection = [NSManagedObject]()
+    
+    var myCollection : Collection?
     
     //MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let context = appDelegate.managedObjectContext
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -141,10 +149,13 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                         self.books = books
                         for book in books {
                             
-                            let book = Book(data: book)
+                            //let book = Book(data: book)
+                            
+                            let book = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: self.appDelegate.managedObjectContext) as! Book
+                            
                             
                             //self.collection.append(book!)
-                            self.newBooks.append(book!)
+                            self.newBooks.append(book)
                             
                             /*
                             self.books.append(book)

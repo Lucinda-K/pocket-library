@@ -72,10 +72,20 @@ class Book: NSManagedObject {
         let predicate = NSPredicate(format: "publisherName == %@", publisherStr)
         
         fetchRequest.predicate = predicate
-        
-        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest) as? [Publisher] {
-            publishers = fetchResults
+        do {
+            
+            if let fetchResults = try managedObjectContext!.executeFetchRequest(fetchRequest) as? [Publisher] {
+                publishers = fetchResults
+            }
+        } catch {
+            print("Error: \(error)")
         }
+        
+        print(publishers)
+        
+        
+        
+        
         
         //self.publisher = String(json["volumeInfo"]["publisher"])
         //self.publishedDateStr = String(json["volumeInfo"]["publishedDate"])
@@ -89,12 +99,23 @@ class Book: NSManagedObject {
     func addAuthor(author: String) {
         //print("Adding author \(self.authors.count): \(author)")
         // Add author to list
-        self.authors.append(author)
+        //self.authors.append(author)
+        
+        var current_authors = self.mutableSetValueForKey("authors")
+        current_authors.addObject(author)
+        
+        if current_authors.count > 1 {
+            self.authorStr = self.authorStr! + ", "
+        }
+        self.authorStr = self.authorStr! + author
+
+        /*
         // Add to author string (only include comma if more than 1 author)
         if self.authors.count > 1 {
             self.authorStr = self.authorStr + ", "
         }
         self.authorStr = self.authorStr + author
+        */
         //print("New author list: \(self.authors)")
         //print("New author string: \(self.authorStr)")
     }
@@ -107,7 +128,7 @@ class Book: NSManagedObject {
     
     
     // MARK: Properties
-    
+    /*
     struct PropertyKey {
         
         static let idKey = "id"
@@ -129,10 +150,10 @@ class Book: NSManagedObject {
         static let retailPriceKey = "retailPrice"
 
     }
-    
+    */
     // MARK: NSCoding
     
-    
+    /*
     //https://developer.apple.com/library/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Lesson10.html
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -184,33 +205,33 @@ class Book: NSManagedObject {
         self.init(title: title, authors: authors)
         
     }
-    
-    init?(data: JSON) {
+    */
+    init(data: JSON) {
         print("Adding Book object")
         
-        super.init()
+        //super.init()
         
-        self.parseJSON(data)
+        parseJSON(data)
         print("Name: \(self.title)")
     }
     
-    init?(title: String, authors: [String]) {
+    init(title: String, authors: [String]) {
         
         self.title = title
-        self.authors = authors
+        //self.authors = authors
 
 
-        super.init()
+        //super.init()
         
         for newAuthor in authors {
             self.addAuthor(newAuthor)
         }
-        
+        /*
         // Initialization should fail if there is no name
         if title.isEmpty {
             return nil
         }
-
+        */
     }
     
     

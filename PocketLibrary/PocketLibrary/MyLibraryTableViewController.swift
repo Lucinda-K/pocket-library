@@ -18,8 +18,10 @@ class MyLibraryTableViewController: UITableViewController {
 
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
-    var myLibrary : [Book] = []
+    //var myLibrary : [Book] = []
     
+    var myCollection = Collection()
+    var myLibrary = [Book]()
     
     //var book1 = Book(title: "Harry Potter and the Prisoner of Azkaban", authors: ["J.K. Rowling"])
     //var book2 = Book(title: "Story of a Soul", authors: ["Therese of Lisieux"])
@@ -34,6 +36,7 @@ class MyLibraryTableViewController: UITableViewController {
         let fetchRequest = NSFetchRequest(entityName: "Collection")
         
         do {
+            //myLibrary = try context.executeFetchRequest(fetchRequest) as! [Book]
             myLibrary = try context.executeFetchRequest(fetchRequest) as! [Book]
             dispatch_async(dispatch_get_main_queue(), {
                 self.tableView.reloadData()
@@ -52,6 +55,9 @@ class MyLibraryTableViewController: UITableViewController {
         print("View loaded")
         
         let context = appDelegate.managedObjectContext
+        
+        myLibrary = myCollection.bookCollection as! [Book]
+        myCollection.setValue("libraryCollection", forKey: "name")
         
         self.fetchData()
         
@@ -195,7 +201,8 @@ class MyLibraryTableViewController: UITableViewController {
         if segue.identifier == "LibraryToScanner" {
             
             if let scannerViewController = segue.destinationViewController as? ScannerViewController {
-                let collection = self.myLibrary
+                //let collection = self.myLibrary
+                let collection = self.myCollection
                 scannerViewController.myCollection = collection
                 
             }
