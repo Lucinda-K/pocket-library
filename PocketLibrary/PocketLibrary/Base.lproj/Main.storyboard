@@ -389,16 +389,16 @@
         <scene sceneID="50Z-cX-hBo">
             <objects>
                 <tableViewController id="xJF-iC-goL" userLabel="LibraryVC" customClass="MyLibraryTableViewController" customModule="PocketLibrary" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" id="XuF-Pa-mLV">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="59" sectionHeaderHeight="28" sectionFooterHeight="28" id="XuF-Pa-mLV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LibraryBookCell" rowHeight="45" id="Qb6-2d-qG3" customClass="MyLibraryTableViewCell" customModule="PocketLibrary" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="45"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LibraryBookCell" rowHeight="59" id="Qb6-2d-qG3" customClass="MyLibraryTableViewCell" customModule="PocketLibrary" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qb6-2d-qG3" id="ZCz-SA-XGZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="58"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udm-71-nNQ">
@@ -413,10 +413,14 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IRF-XH-B9R">
+                                            <rect key="frame" x="14" y="1" width="49" height="47"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="authorLabel" destination="uJj-5w-mm4" id="ncf-WN-jrW"/>
+                                    <outlet property="bookImage" destination="IRF-XH-B9R" id="ZCC-CV-YmY"/>
                                     <outlet property="titleLabel" destination="udm-71-nNQ" id="9mf-Fa-awS"/>
                                 </connections>
                             </tableViewCell>
@@ -526,10 +530,10 @@
         <image name="wishTab" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ff4-ij-ziA"/>
+        <segue reference="I6T-JI-eX2"/>
         <segue reference="uh1-3y-jSY"/>
         <segue reference="k9F-S1-9JE"/>
+        <segue reference="ZsR-cf-fE7"/>
         <segue reference="Iod-ys-lg5"/>
-        <segue reference="I6T-JI-eX2"/>
     </inferredMetricsTieBreakers>
 </document>

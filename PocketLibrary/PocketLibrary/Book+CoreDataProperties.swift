@@ -31,5 +31,6 @@ extension Book {
     @NSManaged var publisher: Publisher?
     @NSManaged var categories: NSSet?
     @NSManaged var mainCategory : String?
+    @NSManaged var thumbnail : NSData?
 
 }

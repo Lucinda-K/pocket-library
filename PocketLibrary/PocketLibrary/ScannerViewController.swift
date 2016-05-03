@@ -186,6 +186,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                             
                             book.retailPrice = Double(String(json_book["volumeInfo"]["saleInfo"]["retailPrice"]["amount"]))
                             
+                            book.imageUrl = String(json_book["volumeInfo"]["imageLinks"]["smallThumbnail"])
+                            
                             // set publisher info
                             publisher.publisherName = String(json_book["volumeInfo"]["publisher"])
                             

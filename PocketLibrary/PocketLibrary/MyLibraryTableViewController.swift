@@ -240,6 +240,35 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         
         cell.titleLabel!.text = current_book.title
         
+        
+        // CELL IMAGES
+        if current_book.thumbnail == nil {
+            // download image, store in memory
+            
+            let url : NSURL = NSURL(string: current_book.imageUrl!)!
+            
+            
+            NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
+                
+                dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    guard let data = data where error == nil else { return }
+                    print(response?.suggestedFilename ?? "")
+                    print("Download Finished")
+                    var bookImage = UIImage(data: data)
+                    current_book.thumbnail = UIImageJPEGRepresentation(bookImage!, 1)
+                    //current_book.thumbnail = UIImage(data: data)
+                    cell.bookImage.image = bookImage
+                    tableView.reloadData()
+                }
+                
+                }.resume()
+            
+        } else {
+            cell.imageView?.image = UIImage(data: current_book.thumbnail!)
+        }
+        
+
+        
         return cell
     }
     
