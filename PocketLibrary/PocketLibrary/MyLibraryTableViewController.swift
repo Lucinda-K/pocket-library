@@ -45,6 +45,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
     @IBAction func unwindToLibraryViewControll(segue: UIStoryboardSegue) { }
     
     var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController()
+    
     @IBAction func addBookActionSheet(sender: UIBarButtonItem) {
         print("User clicked + from Reading")
         
@@ -78,30 +79,42 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         self.presentViewController(optionMenu, animated: true, completion: nil)
     }
 
+    // http://stackoverflow.com/questions/30729011/swift-2-migration-savecontext-in-appdelegate/30733348#30733348
+    func saveContext() {
+        if managedObjectContext.hasChanges {
+            do {
+                try managedObjectContext.save()
+            } catch let error as NSError {
+                NSLog("Unresolved error \(error), \(error.userInfo)")
+            }
+        }
+    }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("View loaded")
+        print("viewdidLoad")
         
-        
+        //myBooks.removeAll()
         // Create default data
+        
         let collectionEntityDescription = NSEntityDescription.entityForName("Collection", inManagedObjectContext: self.managedObjectContext)
         let newCollection = NSManagedObject(entity: collectionEntityDescription!, insertIntoManagedObjectContext: self.managedObjectContext) as? Collection
 
         
-        let bookEntityDescription = NSEntityDescription.entityForName("Book", inManagedObjectContext: self.managedObjectContext)
-        let newBook = NSManagedObject(entity: bookEntityDescription!, insertIntoManagedObjectContext: self.managedObjectContext) as? Book
+        //let bookEntityDescription = NSEntityDescription.entityForName("Book", inManagedObjectContext: self.managedObjectContext)
+        //let newBook = NSManagedObject(entity: bookEntityDescription!, insertIntoManagedObjectContext: self.managedObjectContext) as? Book
         
         // Configure
         
         newCollection?.collectionName = "myLibrary"
+        newCollection?.bookCollection = Set()
         
-        newBook?.title = "Harry Potter 1"
-        newBook?.collection = newCollection
+        //newBook?.title = "Harry Potter 1"
+        //newBook?.collection = newCollection
         
-        newCollection?.bookCollection?.insert(newBook!)
+        //newCollection?.bookCollection?.insert(newBook!)
         print(newCollection?.bookCollection)
         //newCollection?.bookCollection.ob
         // Save
@@ -110,12 +123,12 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         } catch {
             print(error)
         }
-        do {
-            try newBook!.managedObjectContext?.save()
-        } catch {
-            print(error)
-        }
-
+        //do {
+        //    try newBook!.managedObjectContext?.save()
+        //} catch {
+        //    print(error)
+        //}
+        //*/
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
 
@@ -132,44 +145,18 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         for book in (myCollection?.bookCollection)! {
             myBooks.append(book)
         }
-        
-        //print(myBooks)
-        //print(myCollection)
-        
-        //myLibrary!.addBook(book1!)
-        //myLibrary!.addBook(book2!)
-        /*
-        for book in myLibrary.books {
-            print("Printing book...")
-            print(book.title)
-        }
-        */
-        /*
-        for book in myLibrary{
-            print("Printing book...")
-            print(book.valueForKey("title"))
-        }
-        */
-        
-        
-        
-        
-        
-        //saveLibrary()
-        //loadLibrary()
+
         tableView.reloadData()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        
+        print("viewWillAppear")
         
         fetchedResultsController = getFetchedResultController()
         //fetchedResultsController.delegate = self
@@ -177,7 +164,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
             try fetchedResultsController.performFetch()
         } catch _ {
         }
-
+        myBooks.removeAll()
         for book in (myCollection?.bookCollection)! {
             myBooks.append(book)
         }
@@ -245,9 +232,11 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        let numberOfSections = fetchedResultsController.sections?.count
+        //let numberOfSections = fetchedResultsController.sections?.count
+        //let numberOfSections = myBooks.count
         //print("Section: \(numberOfSections!)")
-        return numberOfSections!
+        //return numberOfSections
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -265,39 +254,16 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         let cell = tableView.dequeueReusableCellWithIdentifier("LibraryBookCell", forIndexPath: indexPath) as! MyLibraryTableViewCell
 
         // Configure the cell...
-        //var book : Book
-        
-        //let book = myLibrary[indexPath.row]
-        
-        //var myBooks = [NSManagedObject]()
-        //myBooks = (myCollection?.bookCollection)! as [Book]
-        
-        //myBooks = (myCollection?.bookCollection)!
-        
-        //let book = myBooks[indexPath.row]
+
         myBooks.removeAll()
         for book in (myCollection?.bookCollection)! {
             myBooks.append(book)
         }
 
         let current_book = myBooks[indexPath.row]
-        //print(current_book)
-        //let bookCollection = collection.bookCollection as [Book]
-        
+
         
         cell.titleLabel!.text = current_book.title
-        
-        
-        //var myBooks = myCollection?.mutableSetValueForKey("books")
-        
-        //let book = myBooks[indexPath.row]
-        
-        
-        //book = myLibrary!.books[indexPath.row]
-        //cell.titleLabel!.text = book.valueForKey("title") as? String
-        
-        //cell.titleLabel!.text = book.title
-        //cell.authorLabel!.text = book.authorStr
         
         return cell
     }
@@ -311,17 +277,47 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
+
+
+            let bookRef : Book = myBooks[indexPath.row]
+            print(bookRef)
+            let fetchRequest = NSFetchRequest(entityName:"Book")
+            let predicate = NSPredicate(format: "title == %@", bookRef.title)
+            fetchRequest.predicate = predicate
+            
+            
+            do {
+                
+                if let fetchResults = try managedObjectContext.executeFetchRequest(fetchRequest) as? [Book] {
+                    
+                    print(fetchResults.count)
+                    print("Removing from Core Data")
+                    print(fetchResults[0])
+                    managedObjectContext.deleteObject(fetchResults[0] as Book)
+                    print("Removing from index")
+                    print(myBooks[indexPath.row])
+                    myBooks.removeAtIndex(indexPath.row)
+                    print("myBooks...")
+                    print(myBooks)
+                    saveContext()
+                }
+                //print(myCollection?.collectionName)
+            } catch {
+                print("Error: \(error)")
+            }
+            
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
