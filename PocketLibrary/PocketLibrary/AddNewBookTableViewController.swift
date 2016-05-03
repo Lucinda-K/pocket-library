@@ -81,8 +81,8 @@ class AddNewBookTableViewController: UITableViewController {
         if let newBook = book {
             titleLabel!.text = newBook.title
             authorsLabel?.text = newBook.authorStr
-            //publisherLabel?.text = newBook.publisher
-            //publishDatelabel?.text = newBook.publishedDateStr
+            publisherLabel?.text = newBook.publisher?.publisherName
+            publishDatelabel?.text = newBook.publishedDateStr
             pageCountLabel?.text = String(newBook.pageCount!)
         }
         
