@@ -31,7 +31,7 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
     //var myReading = Collection(name: "myReading", books: [], bookCount: 0)
     
     @IBAction func addBookActionSheet(sender: UIBarButtonItem) {
-        
+        print("User clicked + from Reading")
         
         // 1
         let optionMenu = UIAlertController(title: nil, message: "Add new book to Reading list", preferredStyle: .ActionSheet)
