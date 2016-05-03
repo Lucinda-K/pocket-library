@@ -48,11 +48,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     var googlebooks: GoogleBooksService?
 
-    // These won't be needed once a Book object exists
-    var title1 : String = ""
-    var publisher : String = ""
-    var authors : [String] = []
-    var pageCount : Int = 0
     
     // These won't be needed once a view controller for displaying data exists
     var dataValue = ""
