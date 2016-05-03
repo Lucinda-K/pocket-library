@@ -55,13 +55,17 @@ class AddNewBookTableViewController: UITableViewController {
         //myCollection?.addBook(book!)
         
         if myCollection?.collectionName == "myReading" {
-            self.performSegueWithIdentifier("unwindToReading", sender: self)
+            //self.performSegueWithIdentifier("unwindToReading", sender: self)
+            self.performSegueWithIdentifier("NewBookToReading", sender: self)
         }else if myCollection?.collectionName == "myLibrary" {
-            self.performSegueWithIdentifier("unwindToLibrary", sender: self)
+            //self.performSegueWithIdentifier("unwindToLibrary", sender: self)
+            self.performSegueWithIdentifier("NewBookToLibrary", sender: self)
         } else if myCollection?.collectionName == "myWishList" {
-            self.performSegueWithIdentifier("unwindToWishList", sender: self)
+            //self.performSegueWithIdentifier("unwindToWishList", sender: self)
+            self.performSegueWithIdentifier("NewBookToWishList", sender: self)
         } else {
-            self.performSegueWithIdentifier("unwindToLibrary", sender: self)
+            //self.performSegueWithIdentifier("unwindToLibrary", sender: self)
+            self.performSegueWithIdentifier("NewBookToLibrary", sender: self)
         }
         
         //self.performSegueWithIdentifier("unwindToLibrary", sender: self)
@@ -72,9 +76,8 @@ class AddNewBookTableViewController: UITableViewController {
         
         print("View loaded")
         
-        let context = appDelegate.managedObjectContext
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "saveBook:")
         
-
         if let newBook = book {
             titleLabel!.text = newBook.title
             authorsLabel?.text = newBook.authorStr
@@ -165,7 +168,8 @@ class AddNewBookTableViewController: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if segue.identifier == "unwindToLibrary" {
+        //if segue.identifier == "unwindToLibrary" {
+        if segue.identifier == "NewBookToLibrary" {
             
             if let libraryTableViewController = segue.destinationViewController as? MyLibraryTableViewController {
                 let collection = self.myCollection
@@ -173,7 +177,8 @@ class AddNewBookTableViewController: UITableViewController {
             }
             
         }
-        if segue.identifier == "unwindToReading" {
+        //if segue.identifier == "unwindToReading" {
+        if segue.identifier == "NewBookToReading" {
             
             if let readingTableViewController = segue.destinationViewController as? MyReadingTableViewController {
                 let collection = self.myCollection
@@ -181,8 +186,8 @@ class AddNewBookTableViewController: UITableViewController {
             }
             
         }
-        if segue.identifier == "unwindToWishList" {
-            
+        //if segue.identifier == "unwindToWishList" {
+        if segue.identifier == "NewBookToWishList" {
             if let wishListTableViewController = segue.destinationViewController as? MyWishListTableViewController {
                 let collection = self.myCollection
                 //wishListTableViewController.myCollection = collection

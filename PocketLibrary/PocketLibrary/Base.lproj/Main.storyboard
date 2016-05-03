@@ -73,14 +73,14 @@
                         <outlet property="cameraView" destination="b7h-P3-TLA" id="L6F-gG-kLd"/>
                         <outlet property="dataLabel" destination="KQZ-1w-vlD" id="IzZ-jT-nzB"/>
                         <outlet property="dataTypeLabel" destination="A5M-7J-77L" id="Ydw-FE-PKT"/>
-                        <segue destination="qJ0-Bb-WbO" kind="show" identifier="ScannerToNewBook" id="PVT-FN-Ha0"/>
                         <segue destination="mfa-eN-2kF" kind="unwind" unwindAction="prepareForUnwind:" id="H16-lE-1oA"/>
+                        <segue destination="qJ0-Bb-WbO" kind="show" identifier="ScannerToNewBook" id="k9F-S1-9JE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
                 <exit id="mfa-eN-2kF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1028" y="1992"/>
+            <point key="canvasLocation" x="-438" y="2076"/>
         </scene>
         <!--Add New Book Table View Controller-->
         <scene sceneID="Cgk-eb-rOm">
@@ -90,30 +90,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="5bW-wT-S8X">
-                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="New Book" id="EFV-fr-xBm">
-                                    <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="bxd-yr-0PF">
-                                        <connections>
-                                            <segue destination="8sN-uO-G89" kind="unwind" unwindAction="cancelToScannerViewController:" id="R3W-Ge-xLA"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem key="rightBarButtonItem" systemItem="save" id="Axm-pu-vAq">
-                                        <connections>
-                                            <action selector="saveBook:" destination="qJ0-Bb-WbO" id="WNs-dx-mhc"/>
-                                            <segue destination="yn3-ts-SZo" kind="show" identifier="unwindToWishList" id="sNA-Jd-K0o"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <sections>
                             <tableViewSection headerTitle="Title" id="p3y-3F-Y1t">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Etc-WD-KL7">
-                                        <rect key="frame" x="0.0" y="158" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Etc-WD-KL7" id="WZ3-no-6kZ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -133,7 +114,7 @@
                             <tableViewSection headerTitle="Authors" id="EL8-9i-1z1">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FEZ-Rg-xxM">
-                                        <rect key="frame" x="0.0" y="253" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="145" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FEZ-Rg-xxM" id="odQ-8Y-EHt">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -153,7 +134,7 @@
                             <tableViewSection headerTitle="Publisher" id="Po3-X7-voM">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="tJH-ty-1sI">
-                                        <rect key="frame" x="0.0" y="348" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="240" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tJH-ty-1sI" id="01r-zF-FxA">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -173,7 +154,7 @@
                             <tableViewSection headerTitle="Publish Date" id="wRv-Yl-qGZ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3ut-Ts-4ue">
-                                        <rect key="frame" x="0.0" y="443" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="335" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3ut-Ts-4ue" id="0EL-86-OFI">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -193,7 +174,7 @@
                             <tableViewSection headerTitle="Pages" id="WPa-fS-E4Q">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lYg-do-pph">
-                                        <rect key="frame" x="0.0" y="538" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="430" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lYg-do-pph" id="icP-B9-KEY">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -216,6 +197,7 @@
                             <outlet property="delegate" destination="qJ0-Bb-WbO" id="IUD-Zx-aRg"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="H3l-QI-E1a"/>
                     <connections>
                         <outlet property="authorsCell" destination="FEZ-Rg-xxM" id="d6r-qF-kX6"/>
                         <outlet property="authorsLabel" destination="NKy-KY-x8m" id="Kyf-PQ-IYZ"/>
@@ -226,13 +208,14 @@
                         <outlet property="publisherLabel" destination="TLa-CJ-qpn" id="gyt-gN-2bc"/>
                         <outlet property="titleCell" destination="Etc-WD-KL7" id="FOK-O5-L23"/>
                         <outlet property="titleLabel" destination="aq1-CH-OxU" id="fWz-SJ-AXH"/>
-                        <segue destination="8sN-uO-G89" kind="unwind" identifier="unwindToLibrary" unwindAction="unwindToLibraryViewControll:" id="dGY-bt-mBW"/>
+                        <segue destination="xJF-iC-goL" kind="show" identifier="NewBookToLibrary" id="Iod-ys-lg5"/>
+                        <segue destination="kXc-II-6Gd" kind="show" identifier="NewBookToReading" id="qgZ-3P-qOC"/>
+                        <segue destination="yn3-ts-SZo" kind="show" identifier="NewBookToWishList" id="uh1-3y-jSY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P92-zs-x9a" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="8sN-uO-G89" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="247" y="1453"/>
+            <point key="canvasLocation" x="345" y="2058"/>
         </scene>
         <!--My Reading-->
         <scene sceneID="RsY-UI-JWd">
@@ -244,7 +227,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReadingCell" id="NnV-Tx-0dM" customClass="MyReadingTableViewCell" customModule="PocketLibrary" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NnV-Tx-0dM" id="oY9-uw-hES">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -288,7 +271,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMv-A2-40b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1812" y="1091"/>
+            <point key="canvasLocation" x="-47" y="1291"/>
         </scene>
         <!--MapVC-->
         <scene sceneID="pKM-rH-mco">
@@ -321,9 +304,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xrN-kq-5VW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="724" y="4"/>
+            <point key="canvasLocation" x="754" y="-130"/>
         </scene>
-        <!--Wish List-->
+        <!--My Wish List Table View Controller-->
         <scene sceneID="Hhe-ug-56h">
             <objects>
                 <tableViewController id="yn3-ts-SZo" customClass="MyWishListTableViewController" customModule="PocketLibrary" customModuleProvider="target" sceneMemberID="viewController">
@@ -333,7 +316,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WishListCell" id="Gxf-FC-t5a" customClass="MyWishListTableViewCell" customModule="PocketLibrary" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gxf-FC-t5a" id="f6o-hK-gYh">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -364,11 +347,14 @@
                             <outlet property="delegate" destination="yn3-ts-SZo" id="oC2-UP-pxi"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Wish List" image="wishTab" id="vjf-Zh-ggO"/>
+                    <navigationItem key="navigationItem" id="K8y-cq-tyU"/>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="show" id="Ff4-ij-ziA"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ymZ-lo-AjG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2630" y="780"/>
+            <point key="canvasLocation" x="802" y="1300"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -384,12 +370,12 @@
                         <segue destination="MXO-bW-Ztf" kind="relationship" relationship="viewControllers" id="95U-Iw-pd4"/>
                         <segue destination="wrO-cp-dXJ" kind="relationship" relationship="viewControllers" id="FE3-h7-tC9"/>
                         <segue destination="VeY-B4-kfB" kind="relationship" relationship="viewControllers" id="F9j-Jc-87v"/>
-                        <segue destination="yn3-ts-SZo" kind="relationship" relationship="viewControllers" id="Zdb-KL-jwR"/>
+                        <segue destination="aEP-tw-WOY" kind="relationship" relationship="viewControllers" id="Zdb-KL-jwR"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-96" y="4"/>
+            <point key="canvasLocation" x="-92" y="-122"/>
         </scene>
         <!--LibraryVC-->
         <scene sceneID="50Z-cX-hBo">
@@ -401,7 +387,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LibraryBookCell" rowHeight="45" id="Qb6-2d-qG3" customClass="MyLibraryTableViewCell" customModule="PocketLibrary" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="45"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qb6-2d-qG3" id="ZCz-SA-XGZ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -446,7 +432,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9nX-Yl-KYD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="264" y="780"/>
+            <point key="canvasLocation" x="-738" y="1291"/>
         </scene>
         <!--Reading-->
         <scene sceneID="1eU-3Z-ywW">
@@ -465,7 +451,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="1069" y="780"/>
+            <point key="canvasLocation" x="-47" y="616"/>
         </scene>
         <!--Library-->
         <scene sceneID="D3C-5c-mUU">
@@ -484,7 +470,44 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pOt-aZ-z8T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-548" y="780"/>
+            <point key="canvasLocation" x="-746" y="622"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nKf-UK-ky6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ezw-I6-sNO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jrZ-ua-vF0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qJ0-Bb-WbO" kind="relationship" relationship="rootViewController" id="zuZ-AV-vpt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8vb-fY-y7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3" y="2944"/>
+        </scene>
+        <!--Wish List-->
+        <scene sceneID="IZi-0b-gGE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aEP-tw-WOY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Wish List" image="wishTab" id="vjf-Zh-ggO"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Cu-Vd-kX6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yn3-ts-SZo" kind="relationship" relationship="rootViewController" id="6ho-iI-1D5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0gM-c9-nMu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="802" y="616"/>
         </scene>
     </scenes>
     <resources>
@@ -495,7 +518,10 @@
         <image name="wishTab" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZsR-cf-fE7"/>
-        <segue reference="sNA-Jd-K0o"/>
+        <segue reference="Ff4-ij-ziA"/>
+        <segue reference="uh1-3y-jSY"/>
+        <segue reference="k9F-S1-9JE"/>
+        <segue reference="Iod-ys-lg5"/>
+        <segue reference="qgZ-3P-qOC"/>
     </inferredMetricsTieBreakers>
 </document>
