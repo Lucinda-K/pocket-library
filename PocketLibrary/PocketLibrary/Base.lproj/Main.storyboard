@@ -29,7 +29,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b7h-P3-TLA">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b7h-P3-TLA">
                                 <rect key="frame" x="173" y="130" width="254" height="236"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="254" id="C5D-Tg-7D8"/>
@@ -44,12 +44,15 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eSO-lD-5Wd">
                                 <rect key="frame" x="0.0" y="18" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="Jx6-Ij-Elq">
+                                    <navigationItem title="Scan New Barcode" id="Jx6-Ij-Elq">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="zkm-Le-kt5">
                                             <connections>
-                                                <segue destination="mfa-eN-2kF" kind="unwind" unwindAction="cancelToLibraryViewController:" id="W3E-Vr-6rp"/>
+                                                <segue destination="mfa-eN-2kF" kind="unwind" unwindAction="prepareForUnwind:" id="3rn-0C-cpz"/>
                                             </connections>
                                         </barButtonItem>
+                                        <connections>
+                                            <outlet property="leftBarButtonItem" destination="zkm-Le-kt5" id="YJv-Lj-rhu"/>
+                                        </connections>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -71,6 +74,7 @@
                         <outlet property="dataLabel" destination="KQZ-1w-vlD" id="IzZ-jT-nzB"/>
                         <outlet property="dataTypeLabel" destination="A5M-7J-77L" id="Ydw-FE-PKT"/>
                         <segue destination="qJ0-Bb-WbO" kind="show" identifier="ScannerToNewBook" id="PVT-FN-Ha0"/>
+                        <segue destination="mfa-eN-2kF" kind="unwind" unwindAction="prepareForUnwind:" id="H16-lE-1oA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -284,7 +288,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMv-A2-40b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1000" y="1091"/>
+            <point key="canvasLocation" x="1812" y="1091"/>
         </scene>
         <!--MapVC-->
         <scene sceneID="pKM-rH-mco">
@@ -364,7 +368,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ymZ-lo-AjG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1818" y="780"/>
+            <point key="canvasLocation" x="2630" y="780"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -378,7 +382,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="MXO-bW-Ztf" kind="relationship" relationship="viewControllers" id="95U-Iw-pd4"/>
-                        <segue destination="xJF-iC-goL" kind="relationship" relationship="viewControllers" id="FE3-h7-tC9"/>
+                        <segue destination="wrO-cp-dXJ" kind="relationship" relationship="viewControllers" id="FE3-h7-tC9"/>
                         <segue destination="VeY-B4-kfB" kind="relationship" relationship="viewControllers" id="F9j-Jc-87v"/>
                         <segue destination="yn3-ts-SZo" kind="relationship" relationship="viewControllers" id="Zdb-KL-jwR"/>
                     </connections>
@@ -395,23 +399,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="J14-Ow-tQ6">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="My Library" id="n7O-lr-47b">
-                                    <barButtonItem key="leftBarButtonItem" systemItem="edit" id="pcc-bt-uCK"/>
-                                    <barButtonItem key="rightBarButtonItem" systemItem="add" id="dbB-bq-Cbb">
-                                        <connections>
-                                            <segue destination="9pv-A4-QxB" kind="show" identifier="LibraryToScanner" id="hoo-Kh-Cpw"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LibraryBookCell" rowHeight="45" id="Qb6-2d-qG3" customClass="MyLibraryTableViewCell" customModule="PocketLibrary" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="600" height="45"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qb6-2d-qG3" id="ZCz-SA-XGZ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -442,11 +432,21 @@
                             <outlet property="delegate" destination="xJF-iC-goL" id="0UF-il-Npg"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Library" image="libraryTab" id="YyY-iJ-XUV"/>
+                    <navigationItem key="navigationItem" title="My Library" id="AMi-2H-Vnh">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="7Cc-gh-moI"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ILq-U9-1ud">
+                            <connections>
+                                <action selector="addBookActionSheet:" destination="xJF-iC-goL" id="55P-Jz-uIJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="show" identifier="LibraryToScanner" id="ZsR-cf-fE7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9nX-Yl-KYD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-548" y="780"/>
+            <point key="canvasLocation" x="264" y="780"/>
         </scene>
         <!--Reading-->
         <scene sceneID="1eU-3Z-ywW">
@@ -465,7 +465,26 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="257" y="780"/>
+            <point key="canvasLocation" x="1069" y="780"/>
+        </scene>
+        <!--Library-->
+        <scene sceneID="D3C-5c-mUU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wrO-cp-dXJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Library" image="libraryTab" id="YyY-iJ-XUV"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TBG-16-pjC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xJF-iC-goL" kind="relationship" relationship="rootViewController" id="rCV-i5-ZCk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pOt-aZ-z8T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-548" y="780"/>
         </scene>
     </scenes>
     <resources>
@@ -476,7 +495,7 @@
         <image name="wishTab" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mvx-lj-oOU"/>
+        <segue reference="ZsR-cf-fE7"/>
         <segue reference="sNA-Jd-K0o"/>
     </inferredMetricsTieBreakers>
 </document>

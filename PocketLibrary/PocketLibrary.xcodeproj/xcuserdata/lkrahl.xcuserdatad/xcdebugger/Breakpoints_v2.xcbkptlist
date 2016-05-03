@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PocketLibrary/MyLibraryTableViewController.swift"
-            timestampString = "483947615.670895"
+            timestampString = "483952666.733346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PocketLibrary/MyLibraryTableViewController.swift"
-            timestampString = "483947615.670895"
+            timestampString = "483952666.733346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
             landmarkName = "getFetchedResultController()"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PocketLibrary/MyLibraryTableViewController.swift"
-            timestampString = "483947615.670895"
+            timestampString = "483952666.733346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>

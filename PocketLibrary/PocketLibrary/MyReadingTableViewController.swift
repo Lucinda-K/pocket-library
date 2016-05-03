@@ -26,6 +26,19 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
     
     var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController()
     
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    
+    }
+    
+    override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
+        if self.respondsToSelector(action){
+            return true
+        } else {
+            return false
+        }
+
+    }
+    
     @IBAction func unwindToReadingViewController(segue: UIStoryboardSegue) {}
 
     //var myReading = Collection(name: "myReading", books: [], bookCount: 0)

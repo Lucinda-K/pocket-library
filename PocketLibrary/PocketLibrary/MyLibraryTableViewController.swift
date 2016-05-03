@@ -28,12 +28,59 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
     //var book2 = Book(title: "Story of a Soul", authors: ["Therese of Lisieux"])
     
     // Unwind segue from cancel button
+    
+    
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+        
+    }
+    
+    override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
+        if self.respondsToSelector(action){
+            return true
+        } else {
+            return false
+        }
+        
+    }
+
     @IBAction func cancelToLibraryViewController(segue: UIStoryboardSegue) {}
     
     @IBAction func unwindToLibraryViewControll(segue: UIStoryboardSegue) { }
     
     var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController()
-    
+    @IBAction func addBookActionSheet(sender: UIBarButtonItem) {
+        print("User clicked + from Reading")
+        
+        // 1
+        let optionMenu = UIAlertController(title: nil, message: "Add new book to Reading list", preferredStyle: .ActionSheet)
+        
+        // 2
+        let barcodeAction = UIAlertAction(title: "Scan barcode", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("User chose: Scan barcode")
+            self.performSegueWithIdentifier("LibraryToScanner", sender: self)
+        })
+        let manualAction = UIAlertAction(title: "Enter manually", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("User chose: Enter manually")
+        })
+        
+        //
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("User cancelled")
+        })
+        
+        
+        // 4
+        optionMenu.addAction(barcodeAction)
+        optionMenu.addAction(manualAction)
+        optionMenu.addAction(cancelAction)
+        
+        // 5
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+
     /*
     func fetchData() {
         print("Fetching data")
@@ -113,6 +160,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
             print(error)
         }
 
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
 
         

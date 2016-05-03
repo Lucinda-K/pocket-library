@@ -65,7 +65,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var myCollection : Collection?
     
     
-    
+    func cancel(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.popViewControllerAnimated(true)
+    }
     
     //MARK: View lifecycle
     override func viewDidLoad() {
@@ -73,14 +76,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
         print("view loaded: ScannerViewController")
         print(myCollection)
-        
-        let newBackButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Bordered, target: self, action: "cancel")
-        self.navigationItem.leftBarButtonItem = newBackButton;
-        
-        func cancel(sender: UIBarButtonItem) {
-            navigationController?.popViewControllerAnimated(true)
-        }
-        
+
     }
     
     override func viewDidAppear(animated: Bool) {
