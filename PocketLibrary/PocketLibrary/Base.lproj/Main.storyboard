@@ -227,7 +227,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReadingCell" id="NnV-Tx-0dM" customClass="MyReadingTableViewCell" customModule="PocketLibrary" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NnV-Tx-0dM" id="oY9-uw-hES">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -271,7 +271,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMv-A2-40b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-47" y="1291"/>
+            <point key="canvasLocation" x="-47" y="1387"/>
         </scene>
         <!--MapVC-->
         <scene sceneID="pKM-rH-mco">
@@ -306,7 +306,7 @@
             </objects>
             <point key="canvasLocation" x="754" y="-130"/>
         </scene>
-        <!--My Wish List Table View Controller-->
+        <!--My Wish List-->
         <scene sceneID="Hhe-ug-56h">
             <objects>
                 <tableViewController id="yn3-ts-SZo" customClass="MyWishListTableViewController" customModule="PocketLibrary" customModuleProvider="target" sceneMemberID="viewController">
@@ -347,9 +347,17 @@
                             <outlet property="delegate" destination="yn3-ts-SZo" id="oC2-UP-pxi"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="K8y-cq-tyU"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="My Wish List" id="K8y-cq-tyU">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="b4k-Nc-N3b">
+                            <connections>
+                                <action selector="addBookActionSheet:" destination="yn3-ts-SZo" id="elb-oJ-ALi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="show" id="Ff4-ij-ziA"/>
+                        <segue destination="9pv-A4-QxB" kind="show" identifier="WishListToScanner" id="Ff4-ij-ziA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ymZ-lo-AjG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -522,6 +530,6 @@
         <segue reference="uh1-3y-jSY"/>
         <segue reference="k9F-S1-9JE"/>
         <segue reference="Iod-ys-lg5"/>
-        <segue reference="qgZ-3P-qOC"/>
+        <segue reference="I6T-JI-eX2"/>
     </inferredMetricsTieBreakers>
 </document>
