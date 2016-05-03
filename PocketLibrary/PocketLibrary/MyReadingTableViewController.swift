@@ -7,22 +7,73 @@
 //
 
 import UIKit
+import CoreData
 
-class MyReadingTableViewController: UITableViewController {
+class MyReadingTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    
+    
+    
+    
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    
+    var myCollection : Collection?
+    var readBooks = [Book]()
+    var readingBooks = [Book]()
+    var toReadBooks = [Book]()
+
     //var myReading = Collection(name: "myReading", books: [], bookCount: 0)
     
+    @IBAction func addBookActionSheet(sender: UIBarButtonItem) {
+        
+        
+        // 1
+        let optionMenu = UIAlertController(title: nil, message: "Add new book to Reading list", preferredStyle: .ActionSheet)
+        
+        // 2
+        let barcodeAction = UIAlertAction(title: "Scan barcode", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("User chose: Scan barcode")
+            self.performSegueWithIdentifier("ReadingToScanner", sender: self)
+        })
+        let manualAction = UIAlertAction(title: "Enter manually", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("User chose: Enter manually")
+        })
+        
+        //
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("User cancelled")
+        })
+        
+        
+        // 4
+        optionMenu.addAction(barcodeAction)
+        optionMenu.addAction(manualAction)
+        optionMenu.addAction(cancelAction)
+        
+        // 5
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        // Unwind and cancel segues
+        //@IBAction func cancelToReadingViewController(segue: UIStoryboardSegue) {}
         
+        //@IBAction func unwindToLibraryViewController(segue: UIStoryboardSegue) {}
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,14 +146,23 @@ class MyReadingTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "ReadingToScanner" {
+            if let scannerViewController = segue.destinationViewController as? ScannerViewController {
+                let collection = self.myCollection
+                scannerViewController.myCollection = collection
+            }
+        }
+        
+        
     }
-    */
+    
 
 }
