@@ -68,6 +68,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("view loaded: ScannerViewController")
         let context = appDelegate.managedObjectContext
         
         
@@ -155,8 +156,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                             
                             book.title = String(json_book["volumeInfo"]["title"])
                             book.subtitle = String(json_book["volumeInfo"]["subtitle"])
-                            
-                            
+                            print("JSON BOOK INFO")
+                            print(book)
                             //self.collection.append(book!)
                             self.newBooks.append(book)
                             

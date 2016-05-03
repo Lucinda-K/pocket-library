@@ -17,24 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
-        /*
-        // Create default Collection NSManagedObjects - library, wish list, reading
-        // http://code.tutsplus.com/tutorials/core-data-and-swift-managed-objects-and-fetch-requests--cms-25068
-        let entityDescription = NSEntityDescription.entityForName("Collection", inManagedObjectContext: self.managedObjectContext)
-        let libraryCollection = NSManagedObject(entity: entityDescription!, insertIntoManagedObjectContext: self.managedObjectContext)
-        
-        // Configure new Collections
-        libraryCollection.setValue("myLibrary", forKey: "collectionName")
-        
-        // Save
-        do {
-            try libraryCollection.managedObjectContext?.save()
-        } catch {
-            print(error)
-        }
-        
-        */
+
 
         return true
     }

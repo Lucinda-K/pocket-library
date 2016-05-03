@@ -22,7 +22,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
     //var myLibrary : [Book] = []
     
     var myCollection : Collection?
-    var myLibrary = [Book]()
+    var myBooks = [Book]()
     
     //var book1 = Book(title: "Harry Potter and the Prisoner of Azkaban", authors: ["J.K. Rowling"])
     //var book2 = Book(title: "Story of a Soul", authors: ["Therese of Lisieux"])
@@ -34,7 +34,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
     
     var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController()
     
-    
+    /*
     func fetchData() {
         print("Fetching data")
         let context = appDelegate.managedObjectContext
@@ -74,7 +74,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         }
         */
         
-    }
+    }*/
     
 
     override func viewDidLoad() {
@@ -83,6 +83,41 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         print("View loaded")
         
         super.viewDidLoad()
+        
+        
+        // Create default data
+        let collectionEntityDescription = NSEntityDescription.entityForName("Collection", inManagedObjectContext: self.managedObjectContext)
+        let newCollection = NSManagedObject(entity: collectionEntityDescription!, insertIntoManagedObjectContext: self.managedObjectContext) as? Collection
+
+        
+        let bookEntityDescription = NSEntityDescription.entityForName("Book", inManagedObjectContext: self.managedObjectContext)
+        let newBook = NSManagedObject(entity: bookEntityDescription!, insertIntoManagedObjectContext: self.managedObjectContext) as? Book
+        
+        // Configure
+        
+        newCollection?.collectionName = "myLibrary"
+        
+        newBook?.title = "Harry Potter 1"
+        newBook?.collection = newCollection
+        
+        newCollection?.bookCollection?.insert(newBook!)
+        print(newCollection?.bookCollection)
+        //newCollection?.bookCollection.ob
+        // Save
+        do {
+            try newCollection!.managedObjectContext?.save()
+        } catch {
+            print(error)
+        }
+        do {
+            try newBook!.managedObjectContext?.save()
+        } catch {
+            print(error)
+        }
+
+
+
+        
         fetchedResultsController = getFetchedResultController()
         //fetchedResultsController.delegate = self
         do {
@@ -90,6 +125,14 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         } catch _ {
         }
         
+        //let collection = fetchedResultsController.objectAtIndexPath(indexPath) as! Collection
+        //print(collection)
+        for book in (myCollection?.bookCollection)! {
+            myBooks.append(book)
+        }
+        
+        print(myBooks)
+        print(myCollection)
         
         //myLibrary!.addBook(book1!)
         //myLibrary!.addBook(book2!)
@@ -126,6 +169,16 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         
         
         
+        fetchedResultsController = getFetchedResultController()
+        //fetchedResultsController.delegate = self
+        do {
+            try fetchedResultsController.performFetch()
+        } catch _ {
+        }
+
+        for book in (myCollection?.bookCollection)! {
+            myBooks.append(book)
+        }
         
         //saveLibrary()
         
@@ -157,6 +210,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
             
             if let fetchResults = try context.executeFetchRequest(fetchRequest1) as? [Collection] {
                 if fetchResults.count == 0 {
+                    print("Creating new collection: \(libraryName)")
                     let collection = NSEntityDescription.entityForName("Collection", inManagedObjectContext: context)
                     let newCollection = NSManagedObject(entity: collection!, insertIntoManagedObjectContext: context)
                     newCollection.setValue(libraryName, forKey: "collectionName")
@@ -165,7 +219,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
                 else {
                     myCollection = fetchResults[0]
                 }
-                print(myCollection)
+                //print(myCollection?.collectionName)
             }
         } catch {
             print("Error: \(error)")
@@ -197,7 +251,10 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         //return myLibrary.bookCount
-        let numberOfRowsInSection = fetchedResultsController.sections?[section].numberOfObjects
+        //let numberOfRowsInSection = fetchedResultsController.sections?[section].numberOfObjects
+        //let numberOfRowsInSection = myBooks.count
+        let numberOfRowsInSection = myCollection?.bookCollection?.count
+        print("bookCollection count: \(myCollection?.bookCollection?.count)")
         return numberOfRowsInSection!
     }
 
@@ -216,12 +273,17 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         //myBooks = (myCollection?.bookCollection)!
         
         //let book = myBooks[indexPath.row]
-        
-        let collection = fetchedResultsController.objectAtIndexPath(indexPath) as! Collection
+        myBooks.removeAll()
+        for book in (myCollection?.bookCollection)! {
+            myBooks.append(book)
+        }
+
+        let current_book = myBooks[indexPath.row]
+        print(current_book)
         //let bookCollection = collection.bookCollection as [Book]
         
         
-        //cell.titleLabel!.text = book.title
+        cell.titleLabel!.text = current_book.title
         
         
         //var myBooks = myCollection?.mutableSetValueForKey("books")

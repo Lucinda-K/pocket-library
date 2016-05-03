@@ -18,6 +18,8 @@ extension Collection {
     @NSManaged var bookCount: NSNumber?
     @NSManaged var pageTotal: NSNumber?
     @NSManaged var priceTotal: NSNumber?
-    @NSManaged var bookCollection: NSSet?
+    @NSManaged var bookCollection: Set<Book>?
+
+    
 
 }

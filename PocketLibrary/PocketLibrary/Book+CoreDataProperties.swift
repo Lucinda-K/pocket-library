@@ -14,7 +14,7 @@ import CoreData
 
 extension Book {
 
-    @NSManaged var title: String?
+    @NSManaged var title: String
     @NSManaged var authorStr: String?
     @NSManaged var id: String?
     @NSManaged var isbn: String?
@@ -26,7 +26,7 @@ extension Book {
     @NSManaged var retailPrice: NSNumber?
     @NSManaged var notes: String?
     @NSManaged var imageUrl: String?
-    @NSManaged var collection: NSManagedObject?
+    @NSManaged var collection: Collection?
     @NSManaged var authors: NSSet?
     @NSManaged var publisher: Publisher?
     @NSManaged var categories: NSSet?

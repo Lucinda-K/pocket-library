@@ -12,10 +12,7 @@ import CoreData
 class AddNewBookTableViewController: UITableViewController {
 
     var book : Book?
-    //var myCollection : Collection?
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    
-    
+
     //var myCollection : [Book] = []
     var myCollection : Collection?
     
@@ -30,9 +27,31 @@ class AddNewBookTableViewController: UITableViewController {
     @IBOutlet weak var publishDatelabel: UILabel!
     @IBOutlet weak var pageCountLabel: UILabel!
     
+    
+    
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    
     @IBAction func saveBook(sender: AnyObject) {
     
         print("You clicked Save")
+        print("Saving to: \(myCollection?.collectionName!)")
+        
+        myCollection?.bookCollection?.insert(book!)
+        
+        do {
+            try myCollection?.managedObjectContext?.save()
+        } catch {
+            print(error)
+        }
+        
+        /*
+        let collectionEntityDescription = NSEntityDescription.entityForName("Collection", inManagedObjectContext: self.managedObjectContext)
+        let newCollection = NSManagedObject(entity: collectionEntityDescription!, insertIntoManagedObjectContext: self.managedObjectContext) as? Collection
+        
+        
+        let bookEntityDescription = NSEntityDescription.entityForName("Book", inManagedObjectContext: self.managedObjectContext)
+        let newBook = NSManagedObject(entity: bookEntityDescription!, insertIntoManagedObjectContext: self.managedObjectContext) as? Book*/
         //myCollection?.addBook(book!)
     self.performSegueWithIdentifier("unwindToLibrary", sender: self)
     }
@@ -52,6 +71,10 @@ class AddNewBookTableViewController: UITableViewController {
             //publishDatelabel?.text = newBook.publishedDateStr
             pageCountLabel?.text = String(newBook.pageCount!)
         }
+        
+        print("Current collection")
+        print(myCollection!)
+        
         //authorsLabel?.text = book!.authorStr
         
         // Uncomment the following line to preserve selection between presentations
