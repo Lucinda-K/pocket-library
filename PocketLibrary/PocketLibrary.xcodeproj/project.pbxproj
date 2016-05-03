@@ -25,6 +25,7 @@
 		68F263BA1CB3085600C80ACB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68F263B81CB3085600C80ACB /* LaunchScreen.storyboard */; };
 		68F263C51CB3085600C80ACB /* PocketLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F263C41CB3085600C80ACB /* PocketLibraryTests.swift */; };
 		68F263D01CB3085600C80ACB /* PocketLibraryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F263CF1CB3085600C80ACB /* PocketLibraryUITests.swift */; };
+		68F37CE51CD8F9750077DBA2 /* BookDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F37CE41CD8F9750077DBA2 /* BookDetailsTableViewController.swift */; };
 		8435138D1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435138C1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift */; };
 		8435138F1CBEF22700AA9EF9 /* AddNewBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435138E1CBEF22700AA9EF9 /* AddNewBookViewController.swift */; };
 		843513911CBEF23000AA9EF9 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843513901CBEF23000AA9EF9 /* ApiKeys.swift */; };
@@ -82,6 +83,7 @@
 		68F263CB1CB3085600C80ACB /* PocketLibraryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketLibraryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F263CF1CB3085600C80ACB /* PocketLibraryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketLibraryUITests.swift; sourceTree = "<group>"; };
 		68F263D11CB3085600C80ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68F37CE41CD8F9750077DBA2 /* BookDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailsTableViewController.swift; sourceTree = "<group>"; };
 		8435138C1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewBookTableViewController.swift; sourceTree = "<group>"; };
 		8435138E1CBEF22700AA9EF9 /* AddNewBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewBookViewController.swift; sourceTree = "<group>"; };
 		843513901CBEF23000AA9EF9 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				68F263AF1CB3085500C80ACB /* ScannerViewController.swift */,
 				8435138E1CBEF22700AA9EF9 /* AddNewBookViewController.swift */,
 				8435138C1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift */,
+				68F37CE41CD8F9750077DBA2 /* BookDetailsTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				843513971CBEF24600AA9EF9 /* SwiftyJSON.swift in Sources */,
 				84C68C0E1CC6FF060067257C /* MyReadingTableViewController.swift in Sources */,
 				84C68C121CC7080C0067257C /* MyReadingTableViewCell.swift in Sources */,
+				68F37CE51CD8F9750077DBA2 /* BookDetailsTableViewController.swift in Sources */,
 				687C54121CC5AC06008D0546 /* MyLibraryTableViewController.swift in Sources */,
 				8435138D1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift in Sources */,
 				683E0D241CD7127F009C29C3 /* Author.swift in Sources */,
