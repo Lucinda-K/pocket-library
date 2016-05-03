@@ -23,6 +23,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     @IBAction func cancelToScannerViewController(segue: UIStoryboardSegue) { }
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     
     //MARK: Properties
@@ -155,38 +156,65 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                         self.json_books = books
                         for json_book in books {
                             
-                            //let book = Book(data: book)
-                            
+                            // New Book object, new Publisher object
                             let book = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: self.appDelegate.managedObjectContext) as! Book
+                            let publisher = NSEntityDescription.insertNewObjectForEntityForName("Publisher", inManagedObjectContext: self.appDelegate.managedObjectContext) as! Publisher
+                            
+                            // Set book information
                             
                             book.title = String(json_book["volumeInfo"]["title"])
+                            
+                            // Helper function in Book class, sets authors and authorStr
+                            let authorCount = json_book["volumeInfo"]["authors"].count
+                            for index in 0...authorCount-1 {
+                                book.addAuthor(json_book["volumeInfo"]["authors"][index].stringValue)
+                            }
+                            
+                            book.id = String(json_book["id"])
+                            
+                            book.isbn = decodedData.stringValue
+                            
                             book.subtitle = String(json_book["volumeInfo"]["subtitle"])
+                            
+                            book.publishedDateStr = String(json_book["volumeInfo"]["publishedDate"])
+                            
+                            book.language = String(json_book["volumeInfo"]["language"])
+                            
+                            book.pageCount = Int(String(json_book["volumeInfo"]["pageCount"]))
+                            
+                            book.listPrice = Double(String(json_book["volumeInfo"]["saleInfo"]["listPrice"]["amount"]))
+                            
+                            book.retailPrice = Double(String(json_book["volumeInfo"]["saleInfo"]["retailPrice"]["amount"]))
+                            
+                            // set publisher info
+                            publisher.publisherName = String(json_book["volumeInfo"]["publisher"])
+                            
+                            book.publisher = publisher
+                                                        var isbns : [String] = []
+                            book.collection = self.myCollection
+                            
+                            for i in 0...json_book["volumeInfo"]["industryIdentifiers"].count-1 {
+                                print(json_book["volumeInfo"]["industryIdentifiers"][i]["identifier"].stringValue)
+                                isbns.append(json_book["volumeInfo"]["industryIdentifiers"][i]["identifier"].stringValue)
+                            }
+                            
+                            book.mainCategory = String(json_book["volumeInfo"]["mainCategory"])
+                            
+                            //print(isbns)
+                            
+                            //book.isbn = isbns[1]
+                            //print(self.isbn)
+                            /*
+                            //isbns = json["volumeInfo"]["industryIdentifiers"]
+                            //print(json["volumeInfo"]["industryIndentifiers"])
+                            
+                            book.isbn = String(json_book["volumeInfo"]["industryIdentifiers"])
+                            */
+                            
                             print("JSON BOOK INFO")
                             print(book)
                             //self.collection.append(book!)
                             self.newBooks.append(book)
-                            
-                            /*
-                            self.books.append(book)
-                            let result_book = book
-                            self.title1 = String(result_book["volumeInfo"]["title"])
-                            self.publisher = String(result_book["volumeInfo"]["publisher"])
-                            self.pageCount = Int(String(result_book["volumeInfo"]["pageCount"]))!
-                            for author in result_book["volumeInfo"]["authors"] {
-                                self.authors.append(String(author))
-                            }
-                            */
-                            //self.dataTypeLabel.text = self.title1
-                            /*
-                            print("Title: \(self.title1)")
-                            print("Publisher: \(self.publisher)")
-                            print("Pages: \(self.pageCount)")
-                            print("Authors: \(self.authors.count)")
-                            print(self.authors[0])
-                            for author in self.authors {
-                                print(author)
-                            }
-                            */
                             
                         }
                     print("Queried")
@@ -259,6 +287,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 print("SEGUE: Scanner-->NewBook")
                 print("Passing: \(book!.title)")
                 print("Passing Collection \(collection!.collectionName)")
+                print(book)
             }
             
         }

@@ -19,7 +19,7 @@ extension Book {
     @NSManaged var id: String?
     @NSManaged var isbn: String?
     @NSManaged var subtitle: String?
-    @NSManaged var publishedDate: NSDate?
+    @NSManaged var publishedDateStr: String?
     @NSManaged var language: String?
     @NSManaged var pageCount: NSNumber?
     @NSManaged var listPrice: NSNumber?
@@ -27,8 +27,9 @@ extension Book {
     @NSManaged var notes: String?
     @NSManaged var imageUrl: String?
     @NSManaged var collection: Collection?
-    @NSManaged var authors: NSSet?
+    @NSManaged var authors: Set<Author>
     @NSManaged var publisher: Publisher?
     @NSManaged var categories: NSSet?
+    @NSManaged var mainCategory : String?
 
 }

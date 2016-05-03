@@ -24,9 +24,6 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
     var myCollection : Collection?
     var myBooks = [Book]()
     
-    //var book1 = Book(title: "Harry Potter and the Prisoner of Azkaban", authors: ["J.K. Rowling"])
-    //var book2 = Book(title: "Story of a Soul", authors: ["Therese of Lisieux"])
-    
     // Unwind segue from cancel button
     
     
@@ -81,47 +78,6 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         self.presentViewController(optionMenu, animated: true, completion: nil)
     }
 
-    /*
-    func fetchData() {
-        print("Fetching data")
-        let context = appDelegate.managedObjectContext
-        let fetchRequest = NSFetchRequest(entityName: "Collection")
-        
-        let libraryName = "myLibrary"
-        let predicate = NSPredicate(format: "collectionName == %@", libraryName)
-        fetchRequest.predicate = predicate
-        
-        do {
-            
-            if let fetchResults = try context.executeFetchRequest(fetchRequest) as? [Collection] {
-                print("retchResults.count: \(fetchResults.count)")
-                if fetchResults.count == 0 {
-                        let collection = NSEntityDescription.entityForName("Collection", inManagedObjectContext: context)
-                        let newCollection = NSManagedObject(entity: collection!, insertIntoManagedObjectContext: context)
-                        newCollection.setValue(libraryName, forKey: "collectionName")
-                }
-                else {
-                    myCollection = fetchResults[0]
-                }
-
-            }
-        } catch {
-            print("Error: \(error)")
-        }
-
-            /*
-        do {
-            //myLibrary = try context.executeFetchRequest(fetchRequest) as! [Book]
-            myLibrary = try context.executeFetchRequest(fetchRequest) as! [Book]
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableView.reloadData()
-            })
-        } catch {
-            print("Error: \(error)")
-        }
-        */
-        
-    }*/
     
 
     override func viewDidLoad() {
