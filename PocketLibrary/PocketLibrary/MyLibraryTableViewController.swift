@@ -219,9 +219,10 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         //return myLibrary.bookCount
         //let numberOfRowsInSection = fetchedResultsController.sections?[section].numberOfObjects
         //let numberOfRowsInSection = myBooks.count
-        let numberOfRowsInSection = myCollection?.bookCollection?.count
+        //let numberOfRowsInSection = myCollection?.bookCollection?.count
+        let numberOfRowsInSection = myBooks.count
         //print("bookCollection count: \(myCollection?.bookCollection?.count)")
-        return numberOfRowsInSection!
+        return numberOfRowsInSection
     }
 
     
@@ -254,7 +255,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
                     guard let data = data where error == nil else { return }
                     print(response?.suggestedFilename ?? "")
                     print("Download Finished")
-                    var bookImage = UIImage(data: data)
+                    let bookImage = UIImage(data: data)
                     current_book.thumbnail = UIImageJPEGRepresentation(bookImage!, 1)
                     //current_book.thumbnail = UIImage(data: data)
                     cell.bookImage.image = bookImage
@@ -264,7 +265,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
                 }.resume()
             
         } else {
-            cell.imageView?.image = UIImage(data: current_book.thumbnail!)
+            cell.bookImage.image = UIImage(data: current_book.thumbnail!)
         }
         
 
@@ -309,6 +310,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
                     print("myBooks...")
                     print(myBooks)
                     saveContext()
+                    print(myCollection?.bookCollection?.count)
                 }
                 //print(myCollection?.collectionName)
             } catch {

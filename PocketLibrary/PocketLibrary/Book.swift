@@ -73,6 +73,8 @@ class Book: NSManagedObject {
     
     func addAuthor(author: String) {
         
+        print("Adding author: \(author)")
+        
         let authorEntityDescription = NSEntityDescription.entityForName("Author", inManagedObjectContext: self.managedObjectContext!)
         let newAuthor = NSManagedObject(entity: authorEntityDescription!, insertIntoManagedObjectContext: self.managedObjectContext) as? Author
         
@@ -83,10 +85,31 @@ class Book: NSManagedObject {
         
         if authors.count > 1 {
             authorStr = authorStr! + ", "
+        } else {
+            for thisAuthor in authors {
+                authorStr = authorStr! + thisAuthor.authorName!
+            }
         }
-        authorStr = authorStr! + newAuthor!.authorName!
+        //let currentAuthorString = authorStr
+        //print("current string: \(currentAuthorString)")
+        //authorStr = currentAuthorString! + author
+        //print("authorStr: \(authorStr)")
+        //managedObjectContext?.save()
     }
     
+    func getAuthorStr() -> String {
+        var newAuthorStr = ""
+        var authorCt = 1
+        for author in authors {
+            newAuthorStr = newAuthorStr + author.authorName!
+            if authorCt < authors.count {
+                newAuthorStr = newAuthorStr + ", "
+            }
+            authorCt+=1
+        }
+        
+        return newAuthorStr
+    }
     
     // MARK: Archiving Paths
     

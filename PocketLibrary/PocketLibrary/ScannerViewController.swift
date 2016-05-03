@@ -170,6 +170,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                                 book.addAuthor(json_book["volumeInfo"]["authors"][index].stringValue)
                             }
                             
+                            book.authorStr = book.getAuthorStr()
+                            
                             book.id = String(json_book["id"])
                             
                             book.isbn = decodedData.stringValue

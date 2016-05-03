@@ -201,8 +201,9 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         //return myReading!.bookCount
-        let numberOfRowsInSection = myCollection?.bookCollection?.count
-        return numberOfRowsInSection!
+        //let numberOfRowsInSection = myCollection?.bookCollection?.count
+        let numberOfRowsInSection = myBooks.count
+        return numberOfRowsInSection
         
     }
 
@@ -223,6 +224,35 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
         cell.titleLabel!.text = current_book.title
         //cell.authorLabel.text = book.authorStr
         
+        
+        // CELL IMAGES
+        if current_book.thumbnail == nil {
+            // download image, store in memory
+            
+            let url : NSURL = NSURL(string: current_book.imageUrl!)!
+            
+            
+            NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
+                
+                dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    guard let data = data where error == nil else { return }
+                    print(response?.suggestedFilename ?? "")
+                    print("Download Finished")
+                    let bookImage = UIImage(data: data)
+                    current_book.thumbnail = UIImageJPEGRepresentation(bookImage!, 1)
+                    //current_book.thumbnail = UIImage(data: data)
+                    cell.bookImageView.image = bookImage
+                    tableView.reloadData()
+                }
+                
+                }.resume()
+            
+        } else {
+            cell.bookImageView.image = UIImage(data: current_book.thumbnail!)
+        }
+        
+        
+
         
         return cell
     }

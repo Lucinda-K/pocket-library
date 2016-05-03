@@ -14,6 +14,7 @@ class MyReadingTableViewCell: UITableViewCell {
     
     @IBOutlet weak var authorLabel: UILabel!
     
+    @IBOutlet weak var bookImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
