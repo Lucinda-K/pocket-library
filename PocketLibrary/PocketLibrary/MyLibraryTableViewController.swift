@@ -11,21 +11,16 @@ import CoreData
 
 class MyLibraryTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
-    
-    //var myLibrary = Collection(name: "myLibrary", books: [], bookCount: 0)
-    
-    //var myLibrary = [NSManagedObject]()   // Core Data - [Book]
-
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-    
-    //var myLibrary : [Book] = []
-    
+
     var myCollection : Collection?
     var myBooks = [Book]()
     
     // Unwind segue from cancel button
     
+    
+    var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController()
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
         
@@ -40,11 +35,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         
     }
 
-    @IBAction func cancelToLibraryViewController(segue: UIStoryboardSegue) {}
-    
-    @IBAction func unwindToLibraryViewControll(segue: UIStoryboardSegue) { }
-    
-    var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController()
+
     
     @IBAction func addBookActionSheet(sender: UIBarButtonItem) {
         print("User clicked + from Reading")
@@ -96,39 +87,24 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
 
         print("viewdidLoad")
         
-        //myBooks.removeAll()
         // Create default data
-        
         let collectionEntityDescription = NSEntityDescription.entityForName("Collection", inManagedObjectContext: self.managedObjectContext)
         let newCollection = NSManagedObject(entity: collectionEntityDescription!, insertIntoManagedObjectContext: self.managedObjectContext) as? Collection
-
-        
-        //let bookEntityDescription = NSEntityDescription.entityForName("Book", inManagedObjectContext: self.managedObjectContext)
-        //let newBook = NSManagedObject(entity: bookEntityDescription!, insertIntoManagedObjectContext: self.managedObjectContext) as? Book
         
         // Configure
         
         newCollection?.collectionName = "myLibrary"
         newCollection?.bookCollection = Set()
-        
-        //newBook?.title = "Harry Potter 1"
-        //newBook?.collection = newCollection
-        
-        //newCollection?.bookCollection?.insert(newBook!)
-        print(newCollection?.bookCollection)
-        //newCollection?.bookCollection.ob
+
+        //print(newCollection?.bookCollection)
+
         // Save
         do {
             try newCollection!.managedObjectContext?.save()
         } catch {
             print(error)
         }
-        //do {
-        //    try newBook!.managedObjectContext?.save()
-        //} catch {
-        //    print(error)
-        //}
-        //*/
+
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
 
@@ -140,8 +116,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         } catch _ {
         }
         
-        //let collection = fetchedResultsController.objectAtIndexPath(indexPath) as! Collection
-        //print(collection)
+
         for book in (myCollection?.bookCollection)! {
             myBooks.append(book)
         }
