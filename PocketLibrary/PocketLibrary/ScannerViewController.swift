@@ -69,7 +69,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         super.viewDidLoad()
 
         print("view loaded: ScannerViewController")
-        let context = appDelegate.managedObjectContext
+        print(myCollection)
         
         
     }
@@ -244,15 +244,16 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         if segue.identifier == "ScannerToNewBook" {
             
-            if let addNewBookViewController = segue.destinationViewController as? AddNewBookViewController {
-                //let book = self.bookToAdd
-                //addNewBookViewController.book = book
-            }
             if let addNewBookTableViewController = segue.destinationViewController as? AddNewBookTableViewController {
                 //let book = self.bookToAdd
                 //addNewBookTableViewController.book = book
-                addNewBookTableViewController.book = self.newBook
-                addNewBookTableViewController.myCollection = self.myCollection
+                let book = self.newBook
+                addNewBookTableViewController.book = book
+                let collection = self.myCollection
+                addNewBookTableViewController.myCollection = collection
+                print("SEGUE: Scanner-->NewBook")
+                print("Passing: \(book!.title)")
+                print("Passing Collection \(collection!.collectionName)")
             }
             
         }

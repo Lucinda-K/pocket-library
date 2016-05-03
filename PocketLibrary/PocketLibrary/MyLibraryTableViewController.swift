@@ -82,8 +82,6 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
 
         print("View loaded")
         
-        super.viewDidLoad()
-        
         
         // Create default data
         let collectionEntityDescription = NSEntityDescription.entityForName("Collection", inManagedObjectContext: self.managedObjectContext)
@@ -131,8 +129,8 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
             myBooks.append(book)
         }
         
-        print(myBooks)
-        print(myCollection)
+        //print(myBooks)
+        //print(myCollection)
         
         //myLibrary!.addBook(book1!)
         //myLibrary!.addBook(book2!)
@@ -244,7 +242,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         let numberOfSections = fetchedResultsController.sections?.count
-        print("Section: \(numberOfSections!)")
+        //print("Section: \(numberOfSections!)")
         return numberOfSections!
     }
 
@@ -254,7 +252,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         //let numberOfRowsInSection = fetchedResultsController.sections?[section].numberOfObjects
         //let numberOfRowsInSection = myBooks.count
         let numberOfRowsInSection = myCollection?.bookCollection?.count
-        print("bookCollection count: \(myCollection?.bookCollection?.count)")
+        //print("bookCollection count: \(myCollection?.bookCollection?.count)")
         return numberOfRowsInSection!
     }
 
@@ -279,7 +277,7 @@ class MyLibraryTableViewController: UITableViewController, NSFetchedResultsContr
         }
 
         let current_book = myBooks[indexPath.row]
-        print(current_book)
+        //print(current_book)
         //let bookCollection = collection.bookCollection as [Book]
         
         

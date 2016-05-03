@@ -53,7 +53,18 @@ class AddNewBookTableViewController: UITableViewController {
         let bookEntityDescription = NSEntityDescription.entityForName("Book", inManagedObjectContext: self.managedObjectContext)
         let newBook = NSManagedObject(entity: bookEntityDescription!, insertIntoManagedObjectContext: self.managedObjectContext) as? Book*/
         //myCollection?.addBook(book!)
-    self.performSegueWithIdentifier("unwindToLibrary", sender: self)
+        
+        if myCollection?.collectionName == "myReading" {
+            self.performSegueWithIdentifier("unwindToReading", sender: self)
+        }else if myCollection?.collectionName == "myLibrary" {
+            self.performSegueWithIdentifier("unwindToLibrary", sender: self)
+        } else if myCollection?.collectionName == "myWishList" {
+            self.performSegueWithIdentifier("unwindToWishList", sender: self)
+        } else {
+            self.performSegueWithIdentifier("unwindToLibrary", sender: self)
+        }
+        
+        //self.performSegueWithIdentifier("unwindToLibrary", sender: self)
     }
     
     override func viewDidLoad() {
@@ -162,6 +173,23 @@ class AddNewBookTableViewController: UITableViewController {
             }
             
         }
+        if segue.identifier == "unwindToReading" {
+            
+            if let readingTableViewController = segue.destinationViewController as? MyReadingTableViewController {
+                let collection = self.myCollection
+                readingTableViewController.myCollection = collection
+            }
+            
+        }
+        if segue.identifier == "unwindToWishList" {
+            
+            if let wishListTableViewController = segue.destinationViewController as? MyWishListTableViewController {
+                let collection = self.myCollection
+                //wishListTableViewController.myCollection = collection
+            }
+            
+        }
+
 
         
         

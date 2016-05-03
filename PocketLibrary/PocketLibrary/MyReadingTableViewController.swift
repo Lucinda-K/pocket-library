@@ -19,9 +19,14 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     var myCollection : Collection?
+    var myBooks = [Book]()
     var readBooks = [Book]()
     var readingBooks = [Book]()
     var toReadBooks = [Book]()
+    
+    var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController()
+    
+    @IBAction func unwindToReadingViewController(segue: UIStoryboardSegue) {}
 
     //var myReading = Collection(name: "myReading", books: [], bookCount: 0)
     
@@ -57,6 +62,52 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
         // 5
         self.presentViewController(optionMenu, animated: true, completion: nil)
     }
+    
+    func getFetchedResultController() -> NSFetchedResultsController {
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        return fetchedResultsController
+    }
+    
+    
+    func taskFetchRequest() -> NSFetchRequest {
+        
+        let context = appDelegate.managedObjectContext
+        let fetchRequest1 = NSFetchRequest(entityName: "Collection")
+        
+        let collectionName = "myReading"
+        let predicate = NSPredicate(format: "collectionName == %@", collectionName)
+        fetchRequest1.predicate = predicate
+        let sortDescriptor = NSSortDescriptor(key: "collectionName", ascending: true)
+        fetchRequest1.sortDescriptors = [sortDescriptor]
+        
+        do {
+            
+            if let fetchResults = try context.executeFetchRequest(fetchRequest1) as? [Collection] {
+                if fetchResults.count == 0 {
+                    print("Creating new collection: \(collectionName)")
+                    let collection = NSEntityDescription.entityForName("Collection", inManagedObjectContext: context)
+                    let newCollection = NSManagedObject(entity: collection!, insertIntoManagedObjectContext: context)
+                    newCollection.setValue(collectionName, forKey: "collectionName")
+                    myCollection = newCollection as? Collection
+                }
+                else {
+                    myCollection = fetchResults[0]
+                }
+                //print(myCollection?.collectionName)
+            }
+        } catch {
+            print("Error: \(error)")
+        }
+        
+        
+        
+        
+        //let fetchRequest = NSFetchRequest(entityName: "Collection")
+        
+        return fetchRequest1
+    }
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,13 +120,52 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
+        
+        // Create default data
+        let collectionEntityDescription = NSEntityDescription.entityForName("Collection", inManagedObjectContext: self.managedObjectContext)
+        let newCollection = NSManagedObject(entity: collectionEntityDescription!, insertIntoManagedObjectContext: self.managedObjectContext) as? Collection
+        
+        newCollection?.collectionName = "myReading"
+        
+        do {
+            try newCollection!.managedObjectContext?.save()
+        } catch {
+            print(error)
+        }
+        
+        
+        
+        fetchedResultsController = getFetchedResultController()
+        //fetchedResultsController.delegate = self
+        do {
+            try fetchedResultsController.performFetch()
+        } catch _ {
+        }
+        
+
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
-        
+        tableView.reloadData()
         
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        
+        fetchedResultsController = getFetchedResultController()
+        //fetchedResultsController.delegate = self
+        do {
+            try fetchedResultsController.performFetch()
+        } catch _ {
+        }
+        
+
+        tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -85,13 +175,15 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        let numberOfSections = fetchedResultsController.sections?.count
+        return numberOfSections!
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         //return myReading!.bookCount
-        return 1
+        let numberOfRowsInSection = myCollection?.bookCollection?.count
+        return numberOfRowsInSection!
     }
 
     
@@ -99,11 +191,16 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
         let cell = tableView.dequeueReusableCellWithIdentifier("ReadingCell", forIndexPath: indexPath) as! MyReadingTableViewCell
 
         // Configure the cell...
-        var book : Book
+        //var book : Book
         
+        myBooks.removeAll()
+        for book in (myCollection?.bookCollection)! {
+            myBooks.append(book)
+        }
+        let current_book = myBooks[indexPath.row]
         //book = myReading!.books[indexPath.row]
         
-        //cell.titleLabel.text = book.title
+        cell.titleLabel!.text = current_book.title
         //cell.authorLabel.text = book.authorStr
         
         
@@ -158,6 +255,8 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
             if let scannerViewController = segue.destinationViewController as? ScannerViewController {
                 let collection = self.myCollection
                 scannerViewController.myCollection = collection
+                print("SEGUE: Reading-->Scanner")
+                print("Passing Collection - \(collection!.collectionName)")
             }
         }
         

@@ -143,6 +143,7 @@
 		689BAD651CD10797002E027E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				68F263B31CB3085500C80ACB /* Main.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -150,6 +151,16 @@
 		689BAD661CD107A2002E027E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				843513941CBEF23E00AA9EF9 /* MapViewController.swift */,
+				687C54111CC5AC06008D0546 /* MyLibraryTableViewController.swift */,
+				68A1FFA01CC6C45E00DFC848 /* MyLibraryTableViewCell.swift */,
+				84C68C0D1CC6FF060067257C /* MyReadingTableViewController.swift */,
+				84C68C111CC7080C0067257C /* MyReadingTableViewCell.swift */,
+				84C68C0F1CC6FF370067257C /* MyWishListTableViewController.swift */,
+				84C68C131CC7081E0067257C /* MyWishListTableViewCell.swift */,
+				68F263AF1CB3085500C80ACB /* ScannerViewController.swift */,
+				8435138E1CBEF22700AA9EF9 /* AddNewBookViewController.swift */,
+				8435138C1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -182,20 +193,9 @@
 				689BAD641CD1078F002E027E /* Model */,
 				8435139A1CBEF50B00AA9EF9 /* ApiKeys.plist */,
 				68F263AD1CB3085500C80ACB /* AppDelegate.swift */,
-				68F263AF1CB3085500C80ACB /* ScannerViewController.swift */,
 				843513981CBEF25600AA9EF9 /* GoogleBooksService.swift */,
 				843513961CBEF24600AA9EF9 /* SwiftyJSON.swift */,
-				843513941CBEF23E00AA9EF9 /* MapViewController.swift */,
 				843513901CBEF23000AA9EF9 /* ApiKeys.swift */,
-				8435138E1CBEF22700AA9EF9 /* AddNewBookViewController.swift */,
-				8435138C1CBEF21D00AA9EF9 /* AddNewBookTableViewController.swift */,
-				68F263B31CB3085500C80ACB /* Main.storyboard */,
-				84C68C111CC7080C0067257C /* MyReadingTableViewCell.swift */,
-				84C68C131CC7081E0067257C /* MyWishListTableViewCell.swift */,
-				84C68C0D1CC6FF060067257C /* MyReadingTableViewController.swift */,
-				84C68C0F1CC6FF370067257C /* MyWishListTableViewController.swift */,
-				687C54111CC5AC06008D0546 /* MyLibraryTableViewController.swift */,
-				68A1FFA01CC6C45E00DFC848 /* MyLibraryTableViewCell.swift */,
 				68F263B61CB3085500C80ACB /* Assets.xcassets */,
 				68F263B81CB3085600C80ACB /* LaunchScreen.storyboard */,
 				68F263BB1CB3085600C80ACB /* Info.plist */,
