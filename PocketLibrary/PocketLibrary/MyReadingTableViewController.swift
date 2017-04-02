@@ -12,8 +12,8 @@ import CoreData
 class MyReadingTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     // Core Data context management
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
     
     // Keeping track of current collection and books
     var myCollection : Collection?
@@ -24,12 +24,12 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
     
     var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController()
     
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    @IBAction func prepareForUnwind(_ segue: UIStoryboardSegue) {
     
     }
     
-    override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
-        if self.respondsToSelector(action){
+    override func canPerformUnwindSegueAction(_ action: Selector, from fromViewController: UIViewController, withSender sender: Any) -> Bool {
+        if self.responds(to: action){
             return true
         } else {
             return false
@@ -38,25 +38,25 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
     }
     
 
-    @IBAction func addBookActionSheet(sender: UIBarButtonItem) {
+    @IBAction func addBookActionSheet(_ sender: UIBarButtonItem) {
         print("User clicked + from Reading")
         
         // 1
-        let optionMenu = UIAlertController(title: nil, message: "Add new book to Reading list", preferredStyle: .ActionSheet)
+        let optionMenu = UIAlertController(title: nil, message: "Add new book to Reading list", preferredStyle: .actionSheet)
         
         // 2
-        let barcodeAction = UIAlertAction(title: "Scan barcode", style: .Default, handler: {
+        let barcodeAction = UIAlertAction(title: "Scan barcode", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             print("User chose: Scan barcode")
-            self.performSegueWithIdentifier("ReadingToScanner", sender: self)
+            self.performSegue(withIdentifier: "ReadingToScanner", sender: self)
         })
-        let manualAction = UIAlertAction(title: "Enter manually", style: .Default, handler: {
+        let manualAction = UIAlertAction(title: "Enter manually", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             print("User chose: Enter manually")
         })
         
         //
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
             print("User cancelled")
         })
@@ -68,7 +68,7 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
         optionMenu.addAction(cancelAction)
         
         // 5
-        self.presentViewController(optionMenu, animated: true, completion: nil)
+        self.present(optionMenu, animated: true, completion: nil)
     }
     
     // http://stackoverflow.com/questions/30729011/swift-2-migration-savecontext-in-appdelegate/30733348#30733348
@@ -83,16 +83,16 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
     }
 
     
-    func getFetchedResultController() -> NSFetchedResultsController {
+    func getFetchedResultController() -> NSFetchedResultsController<NSFetchRequestResult> {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         return fetchedResultsController
     }
     
     
-    func taskFetchRequest() -> NSFetchRequest {
+    func taskFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
         
         let context = appDelegate.managedObjectContext
-        let fetchRequest1 = NSFetchRequest(entityName: "Collection")
+        let fetchRequest1 = NSFetchRequest<NSFetchRequestResult>(entityName: "Collection")
         
         let collectionName = "myReading"
         let predicate = NSPredicate(format: "collectionName == %@", collectionName)
@@ -102,11 +102,11 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
         
         do {
             
-            if let fetchResults = try context.executeFetchRequest(fetchRequest1) as? [Collection] {
+            if let fetchResults = try context.fetch(fetchRequest1) as? [Collection] {
                 if fetchResults.count == 0 {
                     print("Creating new collection: \(collectionName)")
-                    let collection = NSEntityDescription.entityForName("Collection", inManagedObjectContext: context)
-                    let newCollection = NSManagedObject(entity: collection!, insertIntoManagedObjectContext: context)
+                    let collection = NSEntityDescription.entity(forEntityName: "Collection", in: context)
+                    let newCollection = NSManagedObject(entity: collection!, insertInto: context)
                     newCollection.setValue(collectionName, forKey: "collectionName")
                     myCollection = newCollection as? Collection
                 }
@@ -134,8 +134,8 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
 
         
         // Create default data
-        let collectionEntityDescription = NSEntityDescription.entityForName("Collection", inManagedObjectContext: self.managedObjectContext)
-        let newCollection = NSManagedObject(entity: collectionEntityDescription!, insertIntoManagedObjectContext: self.managedObjectContext) as? Collection
+        let collectionEntityDescription = NSEntityDescription.entity(forEntityName: "Collection", in: self.managedObjectContext)
+        let newCollection = NSManagedObject(entity: collectionEntityDescription!, insertInto: self.managedObjectContext) as? Collection
         
         newCollection?.collectionName = "myReading"
         newCollection?.bookCollection = Set()
@@ -160,13 +160,13 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
         }
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
         
         tableView.reloadData()
         
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
         print("viewWillAppear")
@@ -191,14 +191,14 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         //let numberOfSections = fetchedResultsController.sections?.count
         //return numberOfSections!
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         //return myReading!.bookCount
         //let numberOfRowsInSection = myCollection?.bookCollection?.count
@@ -208,8 +208,8 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ReadingCell", forIndexPath: indexPath) as! MyReadingTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReadingCell", for: indexPath) as! MyReadingTableViewCell
 
         // Configure the cell...
         //var book : Book
@@ -229,13 +229,13 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
         if current_book.thumbnail == nil {
             // download image, store in memory
             
-            let url : NSURL = NSURL(string: current_book.imageUrl!)!
+            let url : URL = URL(string: current_book.imageUrl!)!
             
             
-            NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                 
-                dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                    guard let data = data where error == nil else { return }
+                DispatchQueue.main.async { () -> Void in
+                    guard let data = data, error == nil else { return }
                     print(response?.suggestedFilename ?? "")
                     print("Download Finished")
                     let bookImage = UIImage(data: data)
@@ -245,10 +245,10 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
                     tableView.reloadData()
                 }
                 
-                }.resume()
+                }) .resume()
             
         } else {
-            cell.bookImageView.image = UIImage(data: current_book.thumbnail!)
+            cell.bookImageView.image = UIImage(data: current_book.thumbnail! as Data)
         }
         
         
@@ -268,27 +268,27 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
 
     
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             // Delete the row from the data source
             
             
             let bookRef : Book = myBooks[indexPath.row]
             print(bookRef)
-            let fetchRequest = NSFetchRequest(entityName:"Book")
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Book")
             let predicate = NSPredicate(format: "title == %@", bookRef.title)
             fetchRequest.predicate = predicate
             
             do {
                 
-                if let fetchResults = try managedObjectContext.executeFetchRequest(fetchRequest) as? [Book] {
+                if let fetchResults = try managedObjectContext.fetch(fetchRequest) as? [Book] {
                     print(fetchResults.count)
                     print("Removing from Core Data")
                     print(fetchResults[0])
-                    managedObjectContext.deleteObject(fetchResults[0] as Book)
+                    managedObjectContext.delete(fetchResults[0] as Book)
                     print("Removing from index")
                     print(myBooks[indexPath.row])
-                    myBooks.removeAtIndex(indexPath.row)
+                    myBooks.remove(at: indexPath.row)
                     print("myBooks...")
                     print(myBooks)
                     saveContext()
@@ -298,8 +298,8 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
                 print("Error: \(error)")
             }
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
@@ -324,12 +324,12 @@ class MyReadingTableViewController: UITableViewController, NSFetchedResultsContr
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "ReadingToScanner" {
-            if let scannerViewController = segue.destinationViewController as? ScannerViewController {
+            if let scannerViewController = segue.destination as? ScannerViewController {
                 let collection = self.myCollection
                 scannerViewController.myCollection = collection
                 print("SEGUE: Reading-->Scanner")

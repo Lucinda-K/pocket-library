@@ -20,10 +20,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     @IBOutlet weak var dataTypeLabel: UILabel!
     
-    @IBAction func cancelToScannerViewController(segue: UIStoryboardSegue) { }
+    @IBAction func cancelToScannerViewController(_ segue: UIStoryboardSegue) { }
     
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
     
     
     //MARK: Properties
@@ -61,9 +61,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var myCollection : Collection?
     
     
-    func cancel(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        navigationController?.popViewControllerAnimated(true)
+    func cancel(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
     //MARK: View lifecycle
@@ -75,15 +75,15 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.googlebooks = GoogleBooksService(API_KEY: api_key)
         self.setupCaptureSession()
 
     }
     
-    private func setupCaptureSession(){
-        self.captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+    fileprivate func setupCaptureSession(){
+        self.captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         let deviceInput:AVCaptureDeviceInput
         do {
             deviceInput = try AVCaptureDeviceInput(device: captureDevice)
@@ -108,7 +108,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
      
      - parameter completion: Completion handler to invoke if setting up the feed was successful.
      */
-    private func setupPreviewLayer(completion:() -> ())
+    fileprivate func setupPreviewLayer(_ completion:() -> ())
     {
         self.captureLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         
@@ -126,16 +126,16 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     /**
     Handles identifying what kind of data output we want from the session, in our case, metadata and the available types of metadata.
     */
-    private func addMetaDataCaptureOutToSession()
+    fileprivate func addMetaDataCaptureOutToSession()
     {
         let metadata = AVCaptureMetadataOutput()
         self.captureSession.addOutput(metadata)
         metadata.metadataObjectTypes = metadata.availableMetadataObjectTypes
-        metadata.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        metadata.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
     }
     
     //MARK: Delegate Methods
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!)
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!)
     {
         print("Capturing metadata...")
         if (self.dataValue == "") {
@@ -152,8 +152,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                         for json_book in books {
                             
                             // New Book object, new Publisher object
-                            let book = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: self.appDelegate.managedObjectContext) as! Book
-                            let publisher = NSEntityDescription.insertNewObjectForEntityForName("Publisher", inManagedObjectContext: self.appDelegate.managedObjectContext) as! Publisher
+                            let book = NSEntityDescription.insertNewObject(forEntityName: "Book", into: self.appDelegate.managedObjectContext) as! Book
+                            let publisher = NSEntityDescription.insertNewObject(forEntityName: "Publisher", into: self.appDelegate.managedObjectContext) as! Publisher
                             
                             // Set book information
                             
@@ -239,7 +239,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         if count > 0 {
             print("Ending capture session")
             self.captureSession.stopRunning()
-            performSegueWithIdentifier("ScannerToNewBook", sender: self)
+            performSegue(withIdentifier: "ScannerToNewBook", sender: self)
         }
         //dispatch_async(dispatch_get_main_queue(), { () -> Void in
             //self.performSegueWithIdentifier("addBarcodeItem", sender: self)
@@ -252,14 +252,14 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     - parameter error: The error message.
     */
-    private func showError(error:String)
+    fileprivate func showError(_ error:String)
     {
-        let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .Alert)
-        let dismiss:UIAlertAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Destructive, handler:{(alert:UIAlertAction) in
-            alertController.dismissViewControllerAnimated(true, completion: nil)
+        let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        let dismiss:UIAlertAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.destructive, handler:{(alert:UIAlertAction) in
+            alertController.dismiss(animated: true, completion: nil)
         })
         alertController.addAction(dismiss)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     
@@ -270,13 +270,13 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "ScannerToNewBook" {
             
-            if let addNewBookTableViewController = segue.destinationViewController as? AddNewBookTableViewController {
+            if let addNewBookTableViewController = segue.destination as? AddNewBookTableViewController {
                 //let book = self.bookToAdd
                 //addNewBookTableViewController.book = book
                 let book = self.newBook

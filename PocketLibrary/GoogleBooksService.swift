@@ -16,7 +16,7 @@ class GoogleBooksService {
     
     var resultJSON : String = ""
     
-    func parseJSONResponse( data: NSData) -> Void {
+    func parseJSONResponse( _ data: Data) -> Void {
         
         
         let json = JSON(data: data)
@@ -36,7 +36,7 @@ class GoogleBooksService {
     
     
     
-    func queryByISBN(isbn: String, callback: ([JSON]) -> Void) {
+    func queryByISBN(_ isbn: String, callback: @escaping ([JSON]) -> Void) {
         // Modeled off of assignment 4 API request
         print("Querying...")
         // Create query url
@@ -44,19 +44,19 @@ class GoogleBooksService {
 
         print(url_str)
         
-        let url2 = NSURL(string: url_str)
-        let request = NSMutableURLRequest(URL: url2!)
-        let session = NSURLSession.sharedSession()
+        let url2 = URL(string: url_str)
+        let request = NSMutableURLRequest(url: url2!)
+        let session = URLSession.shared
         
-        let task = session.dataTaskWithRequest(request) {
+        let task = session.dataTask(with: request, completionHandler: {
             
             (data, responseText, error) -> Void in if error != nil {
                 print(error)
             } else {
                 
-                let result = String(data: data!, encoding: NSASCIIStringEncoding)!
+                let result = String(data: data!, encoding: String.Encoding.ascii)!
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     
                     self.resultJSON = result
                     
@@ -65,7 +65,7 @@ class GoogleBooksService {
                     callback(self.json_books)
                 })
             }
-        }
+        }) 
         
         task.resume()
         

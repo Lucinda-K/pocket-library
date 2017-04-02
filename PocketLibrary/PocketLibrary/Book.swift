@@ -71,12 +71,12 @@ class Book: NSManagedObject {
     }
 */
     
-    func addAuthor(author: String) {
+    func addAuthor(_ author: String) {
         
         print("Adding author: \(author)")
         
-        let authorEntityDescription = NSEntityDescription.entityForName("Author", inManagedObjectContext: self.managedObjectContext!)
-        let newAuthor = NSManagedObject(entity: authorEntityDescription!, insertIntoManagedObjectContext: self.managedObjectContext) as? Author
+        let authorEntityDescription = NSEntityDescription.entity(forEntityName: "Author", in: self.managedObjectContext!)
+        let newAuthor = NSManagedObject(entity: authorEntityDescription!, insertInto: self.managedObjectContext) as? Author
         
         newAuthor?.authorName = author
         
@@ -113,8 +113,8 @@ class Book: NSManagedObject {
     
     // MARK: Archiving Paths
     
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("books")
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("books")
     
     
     
